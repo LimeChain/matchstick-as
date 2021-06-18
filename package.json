@@ -1,0 +1,15 @@
+
+{
+  "name": "subtest-as",
+  "version": "0.0.1",
+  "description": "Helper library for writing subgraph unit tests in Assemblyscript",
+  "devDependencies": {
+    "@as-pect/cli": "^6.1.1",
+    "assemblyscript": "^0.18.32"
+  },
+  "types": "assembly/index.ts",
+  "ascMain": "assembly/index.ts",
+  "scripts": {},
+  "author": "Pete (arthas168)",
+  "license": "MIT"
+}
