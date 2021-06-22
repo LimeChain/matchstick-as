@@ -8,6 +8,6 @@ describe("example", () => {
 
 describe("example", () => {
   it("should execute successfully", () => {
-    expect((): void => { mockFunction("test", "test", "Test") });
+    expect((): void => { mockFunction("test", "test", ["te", "st"], "Test") });
   });
 });
