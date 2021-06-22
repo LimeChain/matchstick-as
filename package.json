@@ -4,6 +4,7 @@
   "description": "Helper library for writing subgraph unit tests in Assemblyscript",
   "devDependencies": {
     "@as-pect/cli": "^6.1.1",
+    "@graphprotocol/graph-ts": "0.16.0",
     "assemblyscript": "^0.18.32"
   },
   "types": "assembly/index.ts",
