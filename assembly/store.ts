@@ -12,7 +12,7 @@ export namespace store {
 
     export function set(entityType: string, id: string, data: Entity): void {
         if (!storeMap.has(entityType)) {
-            storeMap.set(entityType, new Map);
+            storeMap.set(entityType, new Map<string, Entity>());
         }
         storeMap.get(entityType).set(id, data);
     }
@@ -25,7 +25,7 @@ export namespace store {
 
     export function assertFieldEq(entityType: string, id: string, fieldName: string, expectedVal: string): bool {
         if (storeMap.has(entityType) && storeMap.get(entityType).has(id) && storeMap.get(entityType).get(id).get(fieldName) != null) {
-            return storeMap.get(entityType).get(id).get(fieldName)?.toString() == expectedVal
+            return storeMap.get(entityType).get(id).get(fieldName).toString() == expectedVal
         }
         return false;
     }
