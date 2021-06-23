@@ -1,9 +1,9 @@
-import { Entity } from "@graphprotocol/graph-ts";
+import { Entity } from "../node_modules/@graphprotocol/graph-ts";
 
 let storeMap = new Map<string, Map<string, Entity>>();
 
 export namespace store {
-    export function get(entityType: string, id: string): Entity | null {
+    export function get(entityType: string, id: string): Entity {
         if (storeMap.has(entityType)) {
             return storeMap.get(entityType).get(id);
         }
@@ -25,7 +25,7 @@ export namespace store {
 
     export function assertFieldEq(entityType: string, id: string, fieldName: string, expectedVal: string): bool {
         if (storeMap.has(entityType) && storeMap.get(entityType).has(id) && storeMap.get(entityType).get(id).get(fieldName) != null) {
-            return storeMap.get(entityType).get(id).get(fieldName).toString() == expectedVal
+            return storeMap.get(entityType).get(id).get(fieldName)!.toString() == expectedVal
         }
         return false;
     }
