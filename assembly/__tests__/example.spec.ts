@@ -7,7 +7,7 @@ beforeEach(() => { store.clear() });
 
 describe("example", () => {
   it("should execute successfully", () => {
-    expect<bool>(test("this is my test", () => {})).toBeTruthy();
+    expect(() => { test("this is my test", () => {}) }).not.toThrow();
   });
 });
 
