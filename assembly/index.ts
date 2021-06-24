@@ -13,23 +13,23 @@ export namespace log {
   }
 
   export function critical(msg: string, args: Array<string>): void {
-    log(Level.CRITICAL, format(msg, args))
+    log(Level.CRITICAL, msg)
   }
 
   export function error(msg: string, args: Array<string>): void {
-    log(Level.ERROR, format(msg, args))
+    log(Level.ERROR, msg)
   }
 
   export function warning(msg: string, args: Array<string>): void {
-    log(Level.WARNING, format(msg, args))
+    log(Level.WARNING, msg)
   }
 
   export function info(msg: string, args: Array<string>): void {
-    log(Level.INFO, format(msg, args))
+    log(Level.INFO, msg)
   }
 
   export function debug(msg: string, args: Array<string>): void {
-    log(Level.DEBUG, format(msg, args))
+    log(Level.DEBUG, msg)
   }
 }
 
@@ -46,7 +46,7 @@ export function mockFunction(contractAddress: string, fnName: string, fnArgument
 }
 
 export function testFailure(): void {
-  log.error("Something went wrong.")
+  log.error("Something went wrong.", [])
 }
 
 export function callFunction(contractAddress: string, fnName: string, fnArguments: string[]): string {
