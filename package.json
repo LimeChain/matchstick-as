@@ -1,6 +1,6 @@
 {
   "name": "subtest-as",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Helper library for writing subgraph unit tests in Assemblyscript",
   "devDependencies": {
     "@as-pect/cli": "^6.1.1",
