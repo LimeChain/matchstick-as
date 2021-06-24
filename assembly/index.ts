@@ -1,5 +1,6 @@
-let map = new Map<i32, string>();
+import { log } from "../node_modules/@graphprotocol/graph-ts";
 
+let map = new Map<i32, string>();
 // TODO: pass the name parameter to Rust for logging
 export function test(_name: string, f: () => void): bool {
   f();
@@ -9,6 +10,10 @@ export function test(_name: string, f: () => void): bool {
 export function mockFunction(contractAddress: string, fnName: string, fnArguments: string[], expectedReturnValue: string): void {
   let hash = createHash(contractAddress, fnName, fnArguments);
   map.set(hash, expectedReturnValue);
+}
+
+export function testFailure(): void {
+  log.error("Something went wrong.")
 }
 
 export function callFunction(contractAddress: string, fnName: string, fnArguments: string[]): string {
