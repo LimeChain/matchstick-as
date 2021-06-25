@@ -26,7 +26,8 @@ export namespace store {
 
     export function assertFieldEq(entityType: string, id: string, fieldName: string, expectedVal: string): bool {
         if (storeMap.has(entityType) && storeMap.get(entityType).has(id) && storeMap.get(entityType).get(id).get(fieldName) != null) {
-            log.info(`Success! Field ${fieldName} on entity with type ${entityType} and id ${id} equals ${expectedVal}!`, [])
+            let msg = `Success! Field ${fieldName} on entity with type ${entityType} and id ${id} equals ${expectedVal}!`;
+            log.info(msg, [])
             return storeMap.get(entityType).get(id).get(fieldName)!.toString() == expectedVal
         }
         return false;
