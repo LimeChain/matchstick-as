@@ -3,7 +3,7 @@ import { Entity } from "@graphprotocol/graph-ts";
 import { log } from "./log";
 
 let storeMap = new Map<string, Map<string, Entity>>();
-let dummyEntity: Entity = new Entity{};
+let dummyEntity: Entity = new Entity();
 export namespace store {
   export function get(entityType: string, id: string): Entity {
     if (storeMap.has(entityType)) {
