@@ -1,3 +1,4 @@
+import { log } from "./log";
 let map = new Map<i32, string>();
 
 // TODO: pass the name parameter to Rust for logging
@@ -6,20 +7,40 @@ export function test(_name: string, f: () => void): bool {
   return true;
 }
 
-export function mockFunction(contractAddress: string, fnName: string, fnArguments: string[], expectedReturnValue: string): void {
+export function mockFunction(
+  contractAddress: string,
+  fnName: string,
+  fnArguments: string[],
+  expectedReturnValue: string
+): void {
   let hash = createHash(contractAddress, fnName, fnArguments);
   map.set(hash, expectedReturnValue);
 }
 
-export function callFunction(contractAddress: string, fnName: string, fnArguments: string[]): string {
+export function callFunction(
+  contractAddress: string,
+  fnName: string,
+  fnArguments: string[]
+): string {
   let hash = createHash(contractAddress, fnName, fnArguments);
   if (map.has(hash)) {
     return map.get(hash);
   }
-  return "No function with name '" + fnName + "', contract address '" + contractAddress + "' and given arguments found.";
+  log.critical(
+    "No function with name '" +
+      fnName +
+      "', contract address '" +
+      contractAddress +
+      "' and given arguments found."
+  );
+  return "";
 }
 
-function createHash(address: string, fnName: string, fnArguments: string[]): i32 {
+function createHash(
+  address: string,
+  fnName: string,
+  fnArguments: string[]
+): i32 {
   let stringToHash = address + fnName;
   for (let i = 0; i < fnArguments.length; i++) {
     stringToHash.concat(fnArguments[i]);
@@ -31,10 +52,10 @@ function createHash(address: string, fnName: string, fnArguments: string[]): i32
   }
 
   for (let i = 0; i < stringToHash.length; i++) {
-      let char = stringToHash.charCodeAt(i);
-      hash = ((hash << 5) - hash) + char;
-      hash = hash & hash;
+    let char = stringToHash.charCodeAt(i);
+    hash = (hash << 5) - hash + char;
+    hash = hash & hash;
   }
-    
+
   return hash;
 }

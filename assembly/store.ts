@@ -8,7 +8,8 @@ export namespace store {
     if (storeMap.has(entityType)) {
       return storeMap.get(entityType).get(id);
     }
-    throw new Error("Following type is absent from map: " + entityType);
+    log.critical("Following type is absent from map: " + entityType);
+    return new Entity();
   }
 
   export function set(entityType: string, id: string, data: Entity): void {
@@ -46,7 +47,7 @@ export namespace store {
         "' equals '" +
         expectedVal +
         "'.";
-      log.info(msg, []);
+      log.info(msg);
       return (
         storeMap.get(entityType).get(id).get(fieldName)!.toString() ==
         expectedVal
