@@ -26,7 +26,7 @@ export function callFunction(
   if (map.has(hash)) {
     return map.get(hash);
   }
-  log.citical(
+  log.critical(
     "No function with name '" +
       fnName +
       "', contract address '" +
