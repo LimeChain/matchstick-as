@@ -48,7 +48,7 @@ export namespace store {
         "' equals '" +
         expectedVal +
         "'.";
-      log.info(msg, []);
+      log.info(msg);
       return (
         storeMap.get(entityType).get(id).get(fieldName)!.toString() ==
         expectedVal
