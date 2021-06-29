@@ -8,7 +8,7 @@ export namespace store {
     if (storeMap.has(entityType)) {
       return storeMap.get(entityType).get(id);
     }
-    throw new Error("Following type is absent from map: " + entityType);
+    log.critical("Following type is absent from map: " + entityType");
   }
 
   export function set(entityType: string, id: string, data: Entity): void {
