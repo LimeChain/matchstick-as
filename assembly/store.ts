@@ -1,5 +1,5 @@
-import { Entity } from "../node_modules/@graphprotocol/graph-ts";
-// import { Entity } from "@graphprotocol/graph-ts";
+// import { Entity } from "../node_modules/@graphprotocol/graph-ts";
+import { Entity } from "@graphprotocol/graph-ts";
 import { log } from "./log";
 
 let storeMap = new Map<string, Map<string, Entity>>();
