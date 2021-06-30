@@ -1,5 +1,4 @@
 import { Entity } from "../../node_modules/@graphprotocol/graph-ts"; // For unit tests
-// import { Entity } from "@graphprotocol/graph-ts";
 import { mockFunction, callFunction, test } from "../index";
 import { store } from "../store";
 
