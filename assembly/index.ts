@@ -1,4 +1,5 @@
-import { log } from "./log";
+// import { log } from "./log";
+import { mockLogger as log } from "./mocks"; // For unit tests
 let map = new Map<i32, string>();
 
 // TODO: pass the name parameter to Rust for logging
