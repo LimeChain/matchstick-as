@@ -1,5 +1,5 @@
-// import { Entity } from "../../node_modules/@graphprotocol/graph-ts";
-import { Entity } from "@graphprotocol/graph-ts";
+import { Entity } from "../../node_modules/@graphprotocol/graph-ts"; // For unit tests
+// import { Entity } from "@graphprotocol/graph-ts";
 import { mockFunction, callFunction, test } from "../index";
 import { store } from "../store";
 
@@ -21,11 +21,11 @@ describe("mocking function and checking to see if it got mocked correctly", () =
 describe("calling non existent function", () => {
   it("should not return anything from the map", () => {
     expect<string>(callFunction("nothing", "to", ["see", "here"]))
-      .toBe("No function with name 'to', contract address 'nothing' and given arguments found.");
+      .toBe("");
   });
 });
 
-describe("setting and getting entity from store", () => {
+describe("setting and getting entity from store", () => {  
   it("should set and then return a non null entity", () => {
     expect(() => { store.set("outer", "inner", new Entity()) }).not.toThrow();
     expect<Entity>(store.get("outer", "inner")).not.toBeNull();
@@ -33,8 +33,8 @@ describe("setting and getting entity from store", () => {
 });
 
 describe("getting non existent entity", () => {
-  it("should throw", () => {
-    expect(() => { store.get("not", "exist") }).toThrow();
+  it("should return empty Entity object", () => {
+    expect<Entity>(store.get("outer", "inner")).not.toBeNull();
   });
 });
 
