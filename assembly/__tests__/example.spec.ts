@@ -1,5 +1,4 @@
-import { Entity } from "../../node_modules/@graphprotocol/graph-ts"; // For unit tests
-// import { Entity } from "@graphprotocol/graph-ts";
+import { Entity } from "../../node_modules/@graphprotocol/graph-ts";
 import { mockFunction, callFunction, test } from "../index";
 import { store } from "../store";
 
@@ -13,7 +12,7 @@ describe("example", () => {
 
 describe("mocking function and checking to see if it got mocked correctly", () => {
   it("should add and then call function with the given return value", () => {
-    expect(() => { mockFunction("test", "test", ["te", "st"], "Test") }).not.toThrow();
+    expect(() => { mockFunction("test", "test", ["te", "st"], "Test", false) }).not.toThrow();
     expect<string>(callFunction("test", "test", ["te", "st"])).toBe("Test");
   });
 });

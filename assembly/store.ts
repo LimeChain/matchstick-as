@@ -7,9 +7,14 @@ let storeMap = new Map<string, Map<string, Entity>>();
 export namespace store {
   export function get(entityType: string, id: string): Entity {
     if (storeMap.has(entityType)) {
-      return storeMap.get(entityType).get(id);
+      if (storeMap.get(entityType).has(id)) {
+        return storeMap.get(entityType).get(id);
+      } else {
+        log.error("Id: " + id + " is missing for type: " + entityType);
+      }
+    } else {
+      log.error("Following type is absent from map: " + entityType);
     }
-    log.critical("Following type is absent from map: " + entityType);
     return new Entity();
   }
 

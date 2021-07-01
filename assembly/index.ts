@@ -12,10 +12,15 @@ export function mockFunction(
   contractAddress: string,
   fnName: string,
   fnArguments: string[],
-  expectedReturnValue: string
+  expectedReturnValue: string,
+  reverts: bool
 ): void {
   let hash = createHash(contractAddress, fnName, fnArguments);
-  map.set(hash, expectedReturnValue);
+  if (reverts) {
+    map.set(hash, "Function reverted");
+  } else {
+    map.set(hash, expectedReturnValue);
+  }
 }
 
 export function callFunction(
@@ -27,7 +32,7 @@ export function callFunction(
   if (map.has(hash)) {
     return map.get(hash);
   }
-  log.critical(
+  log.error(
     "No function with name '" +
       fnName +
       "', contract address '" +

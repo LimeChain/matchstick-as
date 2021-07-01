@@ -20,7 +20,7 @@ export namespace log {
     log(Level.ERROR, msg);
   }
 
-  export function warning(msg: string,): void {
+  export function warning(msg: string): void {
     log(Level.WARNING, msg);
   }
 
