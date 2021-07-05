@@ -1,4 +1,16 @@
-// import { EthereumEvent } from "@graphprotocol/graph-ts";
+// import {
+//   EthereumEvent,
+//   EthereumEventParam,
+//   Address,
+//   BigInt,
+//   EthereumBlock,
+//   Bytes,
+//   typeConversion,
+//   EthereumTransaction,
+//   EthereumValue,
+//   EthereumValueKind
+// } from "../node_modules/@graphprotocol/graph-ts"; // For unit tests
+
 import {
   EthereumEvent,
   EthereumEventParam,
@@ -10,7 +22,7 @@ import {
   EthereumTransaction,
   EthereumValue,
   EthereumValueKind
-} from "../node_modules/@graphprotocol/graph-ts"; // For unit tests
+} from "@graphprotocol/graph-ts"; // For unit tests
 
 // TODO: Try not to use `typeConversion` since it's a private class in graph-ts
 let defaultBlock: EthereumBlock;
