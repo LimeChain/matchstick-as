@@ -1,7 +1,5 @@
-// import { Entity } from "../node_modules/@graphprotocol/graph-ts"; // For unit tests
 import { Entity } from "@graphprotocol/graph-ts";
 import { log } from "./log";
-// import { mockLogger as log } from "./mocks"; // For unit tests
 
 let storeMap = new Map<string, Map<string, Entity>>();
 export namespace store {
