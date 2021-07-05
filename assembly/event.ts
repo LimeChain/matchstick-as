@@ -9,7 +9,7 @@ import {
   EthereumTransaction,
   EthereumValue,
   EthereumValueKind
-} from "../node_modules/@graphprotocol/graph-ts";
+} from "@graphprotocol/graph-ts";
 
 let defaultBlock: EthereumBlock;
 defaultBlock.hash = typeConversion.stringToH160("1");
