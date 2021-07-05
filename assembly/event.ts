@@ -9,9 +9,8 @@ import {
   EthereumTransaction,
   EthereumValue,
   EthereumValueKind
-} from "@graphprotocol/graph-ts";
+} from "../node_modules/@graphprotocol/graph-ts";
 
-// TODO: Try not to use `typeConversion` since it's a private class in graph-ts
 let defaultBlock: EthereumBlock;
 defaultBlock.hash = typeConversion.stringToH160("1");
 defaultBlock.parentHash = typeConversion.stringToH160("1");
@@ -49,10 +48,21 @@ ethereumValue.data = 1;
 
 defaultEventParams.push(eventParam);
 
-export let defaultEventData: EthereumEvent;
+let defaultEventData: EthereumEvent;
 defaultEventData.address = Address.fromString("123456");
 defaultEventData.logIndex = BigInt.fromI32(1);
 defaultEventData.logType = "default_log_type";
 defaultEventData.block = defaultBlock;
 defaultEventData.transaction = defaultTransaction;
 defaultEventData.parameters = defaultEventParams;
+
+export function addMetadata(event: EthereumEvent): EthereumEvent {
+  event.address = defaultEventData.address;
+  event.logIndex = defaultEventData.logIndex;
+  event.logType = defaultEventData.logType;
+  event.block = defaultEventData.block;
+  event.transaction = defaultEventData.transaction;
+  event.parameters = defaultEventData.parameters;
+
+  return event;
+}
