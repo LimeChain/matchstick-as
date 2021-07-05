@@ -2,7 +2,7 @@ import { log } from "./log";
 let map = new Map<i32, string>();
 
 export function test(name: string, f: () => void): bool {
-  // log.info("TEST " + name)
+  log.info("TEST " + name)
   f();
   return true;
 }
