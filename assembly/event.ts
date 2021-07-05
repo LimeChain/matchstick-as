@@ -7,17 +7,31 @@ import {
   typeConversion,
   EthereumTransaction,
   EthereumValue,
-  EthereumValueKind
-} from "../node_modules/@graphprotocol/graph-ts";
+  EthereumValueKind,
+} from "@graphprotocol/graph-ts";
 
 let defaultBlock: EthereumBlock = new EthereumBlock();
-defaultBlock.hash = typeConversion.stringToH160("0x111");
-defaultBlock.parentHash = typeConversion.stringToH160("0x111");
-defaultBlock.unclesHash = typeConversion.stringToH160("0x111");
-defaultBlock.author = Address.fromString("123456");
-defaultBlock.stateRoot = typeConversion.stringToH160("0x111");
-defaultBlock.transactionsRoot = typeConversion.stringToH160("0x111");
-defaultBlock.receiptsRoot = typeConversion.stringToH160("0x111");
+defaultBlock.hash = typeConversion.stringToH160(
+  "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A"
+);
+defaultBlock.parentHash = typeConversion.stringToH160(
+  "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A"
+);
+defaultBlock.unclesHash = typeConversion.stringToH160(
+  "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A"
+);
+defaultBlock.author = Address.fromString(
+  "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A"
+);
+defaultBlock.stateRoot = typeConversion.stringToH160(
+  "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A"
+);
+defaultBlock.transactionsRoot = typeConversion.stringToH160(
+  "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A"
+);
+defaultBlock.receiptsRoot = typeConversion.stringToH160(
+  "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A"
+);
 defaultBlock.number = BigInt.fromI32(1);
 defaultBlock.gasUsed = BigInt.fromI32(1);
 defaultBlock.gasLimit = BigInt.fromI32(1);
@@ -27,16 +41,25 @@ defaultBlock.totalDifficulty = BigInt.fromI32(1);
 defaultBlock.size = BigInt.fromI32(1);
 
 let defaultTransaction: EthereumTransaction = new EthereumTransaction();
-defaultTransaction.hash = typeConversion.stringToH160("0x111");
+defaultTransaction.hash = typeConversion.stringToH160(
+  "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A"
+);
 defaultTransaction.index = BigInt.fromI32(1);
-defaultTransaction.from = Address.fromString("123456");
-defaultTransaction.to = Address.fromString("123456");
+defaultTransaction.from = Address.fromString(
+  "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A"
+);
+defaultTransaction.to = Address.fromString(
+  "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A"
+);
 defaultTransaction.value = BigInt.fromI32(1);
 defaultTransaction.gasUsed = BigInt.fromI32(1);
 defaultTransaction.gasPrice = BigInt.fromI32(1);
-defaultTransaction.input = typeConversion.stringToH160("0x111");
+defaultTransaction.input = typeConversion.stringToH160(
+  "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A"
+);
 
-let defaultEventParams: Array<EthereumEventParam> = new Array<EthereumEventParam>();
+let defaultEventParams: Array<EthereumEventParam> =
+  new Array<EthereumEventParam>();
 
 let eventParam: EthereumEventParam = new EthereumEventParam();
 eventParam.name = "name";
@@ -48,7 +71,9 @@ ethereumValue.data = 1;
 defaultEventParams.push(eventParam);
 
 let defaultEventData: EthereumEvent = new EthereumEvent();
-defaultEventData.address = Address.fromString("123456");
+defaultEventData.address = Address.fromString(
+  "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A"
+);
 defaultEventData.logIndex = BigInt.fromI32(1);
 defaultEventData.logType = "default_log_type";
 defaultEventData.block = defaultBlock;
