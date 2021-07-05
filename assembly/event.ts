@@ -22,7 +22,7 @@ import {
   EthereumTransaction,
   EthereumValue,
   EthereumValueKind
-} from "@graphprotocol/graph-ts"; // For unit tests
+} from "@graphprotocol/graph-ts";
 
 // TODO: Try not to use `typeConversion` since it's a private class in graph-ts
 let defaultBlock: EthereumBlock;
@@ -62,10 +62,10 @@ ethereumValue.data = 1;
 
 defaultEventParams.push(eventParam);
 
-export let defaultEventParams: EthereumEvent;
-defaultEventParams.address = Address.fromString("123456");
-defaultEventParams.logIndex = BigInt.fromI32(1);
-defaultEventParams.logType = "default_log_type";
-defaultEventParams.block = defaultBlock;
-defaultEventParams.transaction = defaultTransaction;
-defaultEventParams.parameters = defaultEventParams;
+export let defaultEventData: EthereumEvent;
+defaultEventData.address = Address.fromString("123456");
+defaultEventData.logIndex = BigInt.fromI32(1);
+defaultEventData.logType = "default_log_type";
+defaultEventData.block = defaultBlock;
+defaultEventData.transaction = defaultTransaction;
+defaultEventData.parameters = defaultEventParams;

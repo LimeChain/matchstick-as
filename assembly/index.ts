@@ -1,5 +1,5 @@
 import { log } from "./log";
-import { defaultEventParams } from "./event";
+import { defaultEventData } from "./event";
 // import { mockLogger as log } from "./mocks"; // For unit tests
 let map = new Map<i32, string>();
 
