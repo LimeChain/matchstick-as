@@ -1,5 +1,5 @@
 import { log } from "./log";
-import { defaultEventData } from "./event"; 
+export { defaultEventData } from "./event"; 
 
 let map = new Map<i32, string>();
 
