@@ -40,18 +40,6 @@ export namespace store {
       storeMap.get(entityType).has(id) &&
       storeMap.get(entityType).get(id).get(fieldName) != null
     ) {
-      // TODO: helper function for formatting here?
-      let msg =
-        "Success! Field '" +
-        fieldName +
-        "' on entity with type '" +
-        entityType +
-        "' and id '" +
-        id +
-        "' equals '" +
-        expectedVal +
-        "'.";
-      log.info(msg);
       return (
         storeMap.get(entityType).get(id).get(fieldName)!.toString() ==
         expectedVal
