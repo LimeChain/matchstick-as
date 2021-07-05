@@ -50,10 +50,10 @@ ethereumValue.data = 1;
 
 defaultEventParams.push(eventParam);
 
-export let defaultEvent: EthereumEvent;
-defaultEvent.address = Address.fromString("123456");
-defaultEvent.logIndex = BigInt.fromI32(1);
-defaultEvent.logType = "default_log_type";
-defaultEvent.block = defaultBlock;
-defaultEvent.transaction = defaultTransaction;
-defaultEvent.parameters = defaultEventParams;
+export let defaultEventParams: EthereumEvent;
+defaultEventParams.address = Address.fromString("123456");
+defaultEventParams.logIndex = BigInt.fromI32(1);
+defaultEventParams.logType = "default_log_type";
+defaultEventParams.block = defaultBlock;
+defaultEventParams.transaction = defaultTransaction;
+defaultEventParams.parameters = defaultEventParams;
