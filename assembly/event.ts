@@ -1,16 +1,3 @@
-// import {
-//   EthereumEvent,
-//   EthereumEventParam,
-//   Address,
-//   BigInt,
-//   EthereumBlock,
-//   Bytes,
-//   typeConversion,
-//   EthereumTransaction,
-//   EthereumValue,
-//   EthereumValueKind
-// } from "../node_modules/@graphprotocol/graph-ts"; // For unit tests
-
 import {
   EthereumEvent,
   EthereumEventParam,
