@@ -18,7 +18,7 @@ export function mockFunction(
 ): void {
   let hash = createHash(contractAddress, fnName, fnArguments);
   if (reverts) {
-    map.set(hash, "Function reverted");
+    map.set(hash, "");
   } else {
     map.set(hash, expectedReturnValue);
   }
