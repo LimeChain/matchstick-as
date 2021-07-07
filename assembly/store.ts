@@ -1,5 +1,5 @@
-import {Entity} from "@graphprotocol/graph-ts";
-import {log} from "./log";
+import { Entity } from "@graphprotocol/graph-ts";
+import { log } from "./log";
 
 let storeMap = new Map<string, Map<string, Entity>>();
 export namespace store {
@@ -33,7 +33,7 @@ export namespace store {
         entityType: string,
         id: string,
         fieldName: string,
-        expectedVal: string
+        expectedVal: string,
     ): bool {
         if (
             storeMap.has(entityType) &&

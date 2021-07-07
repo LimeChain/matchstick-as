@@ -1,6 +1,6 @@
-import {log} from "./log";
+import { log } from "./log";
 
-export {addMetadata} from "./event";
+export { addMetadata } from "./event";
 
 let map = new Map<i32, string>();
 
@@ -15,7 +15,7 @@ export function mockFunction(
     fnName: string,
     fnArguments: string[],
     expectedReturnValue: string,
-    reverts: bool
+    reverts: bool,
 ): void {
     let hash = createHash(contractAddress, fnName, fnArguments);
     if (reverts) {
@@ -28,7 +28,7 @@ export function mockFunction(
 export function callFunction(
     contractAddress: string,
     fnName: string,
-    fnArguments: string[]
+    fnArguments: string[],
 ): string {
     let hash = createHash(contractAddress, fnName, fnArguments);
     if (map.has(hash)) {
@@ -39,7 +39,7 @@ export function callFunction(
         fnName +
         "', contract address '" +
         contractAddress +
-        "' and given arguments found."
+        "' and given arguments found.",
     );
     return "";
 }
@@ -47,7 +47,7 @@ export function callFunction(
 function createHash(
     address: string,
     fnName: string,
-    fnArguments: string[]
+    fnArguments: string[],
 ): i32 {
     let stringToHash = address + fnName;
     for (let i = 0; i < fnArguments.length; i++) {
