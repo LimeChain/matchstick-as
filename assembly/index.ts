@@ -1,5 +1,4 @@
 import { log } from "./log";
-// import { mockLogger as log } from "./mocks"; // For unit tests
 let map = new Map<i32, string>();
 
 export function test(name: string, f: () => void): bool {
