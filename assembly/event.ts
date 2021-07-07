@@ -1,16 +1,11 @@
 import {
     Address,
     BigInt,
-    EthereumBlock,
-    EthereumEvent,
-    EthereumEventParam,
-    EthereumTransaction,
-    EthereumValue,
-    EthereumValueKind,
+    ethereum,
     typeConversion,
 } from "@graphprotocol/graph-ts";
 
-let defaultBlock: EthereumBlock = new EthereumBlock();
+let defaultBlock: ethereum.Block = new ethereum.Block();
 defaultBlock.hash = typeConversion.stringToH160(
     "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A",
 );
@@ -40,7 +35,7 @@ defaultBlock.difficulty = BigInt.fromI32(1);
 defaultBlock.totalDifficulty = BigInt.fromI32(1);
 defaultBlock.size = BigInt.fromI32(1);
 
-let defaultTransaction: EthereumTransaction = new EthereumTransaction();
+let defaultTransaction: ethereum.Transaction = new ethereum.Transaction();
 defaultTransaction.hash = typeConversion.stringToH160(
     "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A",
 );
@@ -58,19 +53,19 @@ defaultTransaction.input = typeConversion.stringToH160(
     "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A",
 );
 
-let defaultEventParams: Array<EthereumEventParam> =
-    new Array<EthereumEventParam>();
+let defaultEventParams: Array<ethereum.EventParam> =
+    new Array<ethereum.EventParam>();
 
-let eventParam: EthereumEventParam = new EthereumEventParam();
+let eventParam: ethereum.EventParam = new ethereum.EventParam();
 eventParam.name = "name";
 
-let ethereumValue: EthereumValue = new EthereumValue();
-ethereumValue.kind = EthereumValueKind.INT;
+let ethereumValue: ethereum.Value = new ethereum.Value();
+ethereumValue.kind = ethereum.ValueKind.INT;
 ethereumValue.data = 1;
 
 defaultEventParams.push(eventParam);
 
-let defaultEventData: EthereumEvent = new EthereumEvent();
+let defaultEventData: ethereum.Event = new ethereum.Event();
 defaultEventData.address = Address.fromString(
     "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A",
 );
@@ -80,7 +75,7 @@ defaultEventData.block = defaultBlock;
 defaultEventData.transaction = defaultTransaction;
 defaultEventData.parameters = defaultEventParams;
 
-export function addMetadata(event: EthereumEvent): EthereumEvent {
+export function addMetadata(event: ethereum.Event): ethereum.Event {
     event.address = defaultEventData.address;
     event.logIndex = defaultEventData.logIndex;
     event.logType = defaultEventData.logType;
