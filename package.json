@@ -3,7 +3,7 @@
   "version": "0.0.43",
   "description": "Helper library for writing subgraph unit tests in Assemblyscript",
   "dependencies": {
-    "@graphprotocol/graph-ts": "0.16.0",
+    "@graphprotocol/graph-ts": "0.20.0",
     "assemblyscript": "^0.19.3"
   },
   "types": "assembly/index.ts",
