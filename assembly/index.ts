@@ -1,14 +1,17 @@
 import { log } from "./log";
+import { testPassed, toggleTestPassedValue } from  "./store";
 
 export { addMetadata } from "./event";
 
 let map = new Map<i32, string>();
 
-export function test(name: string, f: () => boolean): void {
-    if (f()) {
+export function test(name: string, f: () => void): void {
+    f()
+    if (testPassed) {
         log.info("TEST " + name + " result - SUCCESS");
     } else {
         log.error("TEST " + name + " result - FAIL");
+        toggleTestPassedValue();
     }
 }
 
