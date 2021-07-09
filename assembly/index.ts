@@ -4,10 +4,12 @@ export { addMetadata } from "./event";
 
 let map = new Map<i32, string>();
 
-export function test(name: string, f: () => void): bool {
-    log.info("TEST " + name);
-    f();
-    return true;
+export function test(name: string, f: () => boolean): void {
+    if (f()) {
+        log.info("TEST " + name + " result - SUCCESS");
+    } else {
+        log.error("TEST " + name + " result - FAIL");
+    }
 }
 
 export function mockFunction(
