@@ -4,7 +4,7 @@ import { log } from "./log";
 let storeMap = new Map<string, Map<string, Entity>>();
 export let testPassed = true;
 
-export function toggleTestPassedValue() {
+export function toggleTestPassedValue(): void {
     testPassed = !testPassed;
 }
 

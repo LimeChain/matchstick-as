@@ -9,10 +9,17 @@ export function test(name: string, f: () => void): void {
     f()
     if (testPassed) {
         log.info("TEST " + name + " result - SUCCESS");
+        testUtil.incrementSuccessfulTestsCount();
     } else {
         log.error("TEST " + name + " result - FAIL");
         toggleTestPassedValue();
+        testUtil.incrementFailedTestsCount();
     }
+}
+
+export declare namespace testUtil {
+    export function incrementSuccessfulTestsCount(): void;
+    export function incrementFailedTestsCount(): void;
 }
 
 export function mockFunction(
