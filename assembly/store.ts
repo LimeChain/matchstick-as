@@ -47,6 +47,7 @@ export namespace store {
             storeMap.get(entityType).get(id).get(fieldName) != null
         ) {
             if (storeMap.get(entityType).get(id).get(fieldName)!.toString() != expectedVal) {
+                log.error("Expected '" + storeMap.get(entityType).get(id).get(fieldName)!.toString() + "' to equal '" + expectedVal + "'.")
                 toggleTestPassedValue();
                 return false;
             } else {
