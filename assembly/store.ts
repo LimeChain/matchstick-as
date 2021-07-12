@@ -2,6 +2,12 @@ import { Entity } from "@graphprotocol/graph-ts";
 import { log } from "./log";
 
 let storeMap = new Map<string, Map<string, Entity>>();
+export let testPassed = true;
+
+export function toggleTestPassedValue(): void {
+    testPassed = !testPassed;
+}
+
 export namespace store {
     export function get(entityType: string, id: string): Entity {
         if (storeMap.has(entityType)) {
@@ -40,10 +46,13 @@ export namespace store {
             storeMap.get(entityType).has(id) &&
             storeMap.get(entityType).get(id).get(fieldName) != null
         ) {
-            return (
-                storeMap.get(entityType).get(id).get(fieldName)!.toString() ==
-                expectedVal
-            );
+            if (storeMap.get(entityType).get(id).get(fieldName)!.toString() != expectedVal) {
+                log.error("Expected '" + storeMap.get(entityType).get(id).get(fieldName)!.toString() + "' to equal '" + expectedVal + "'.")
+                toggleTestPassedValue();
+                return false;
+            } else {
+                return true;
+            }
         }
         return false;
     }

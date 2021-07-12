@@ -1,13 +1,25 @@
 import { log } from "./log";
+import { testPassed, toggleTestPassedValue } from  "./store";
 
 export { addMetadata } from "./event";
 
 let map = new Map<i32, string>();
 
-export function test(name: string, f: () => void): bool {
-    log.info("TEST " + name);
-    f();
-    return true;
+export function test(name: string, f: () => void): void {
+    f()
+    if (testPassed) {
+        log.info("TEST " + name + " result - SUCCESS");
+        testUtil.incrementSuccessfulTestsCount();
+    } else {
+        log.error("TEST " + name + " result - FAIL");
+        toggleTestPassedValue();
+        testUtil.incrementFailedTestsCount();
+    }
+}
+
+export declare namespace testUtil {
+    export function incrementSuccessfulTestsCount(): void;
+    export function incrementFailedTestsCount(): void;
 }
 
 export function mockFunction(
