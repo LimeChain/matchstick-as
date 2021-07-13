@@ -10,6 +10,7 @@ export namespace log {
         WARNING = 2,
         INFO = 3,
         DEBUG = 4,
+        SUCCESS = 5
     }
 
     export function critical(msg: string): void {
@@ -30,5 +31,9 @@ export namespace log {
 
     export function debug(msg: string): void {
         log(Level.DEBUG, msg);
+    }
+
+    export function success(msg: string): void {
+        log(Level.SUCCESS, msg);
     }
 }
