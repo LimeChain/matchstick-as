@@ -8,10 +8,10 @@ let map = new Map<i32, string>();
 export function test(name: string, f: () => void): void {
     f()
     if (testPassed) {
-        log.success("TEST " + name + " result - SUCCESS");
+        log.success("TEST " + name + " result - SUCCESS ✅");
         testUtil.incrementSuccessfulTestsCount();
     } else {
-        log.error("TEST " + name + " result - FAIL");
+        log.error("TEST " + name + " result - FAIL ❌");
         toggleTestPassedValue();
         testUtil.incrementFailedTestsCount();
     }
