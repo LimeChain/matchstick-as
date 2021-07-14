@@ -1,5 +1,5 @@
 import { log } from "./log";
-import { testPassed, toggleTestPassedValue } from  "./store";
+import { testPassed, resetTestPassedValue } from  "./store";
 
 export { addMetadata } from "./event";
 
@@ -17,7 +17,7 @@ export function test(name: string, f: () => void): void {
             testUtil.incrementSuccessfulTestsCount();
         } else {
             log.error("TEST " + name + " ❌");
-            toggleTestPassedValue();
+            resetTestPassedValue();
             testUtil.incrementFailedTestsCount();
         }
     }

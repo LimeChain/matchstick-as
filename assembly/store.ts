@@ -4,8 +4,8 @@ import { log } from "./log";
 let storeMap = new Map<string, Map<string, Entity>>();
 export let testPassed = true;
 
-export function toggleTestPassedValue(): void {
-    testPassed = !testPassed;
+export function resetTestPassedValue(): void {
+    testPassed = true;
 }
 
 export namespace store {
@@ -23,6 +23,7 @@ export namespace store {
     }
 
     export function set(entityType: string, id: string, data: Entity): void {
+        log.debug("type: " + entityType + ", id: " + id);
         if (!storeMap.has(entityType)) {
             storeMap.set(entityType, new Map<string, Entity>());
         }
@@ -48,14 +49,14 @@ export namespace store {
         ) {
             if (storeMap.get(entityType).get(id).get(fieldName)!.toString() != expectedVal) {
                 log.error("MISMATCH Expected '" + storeMap.get(entityType).get(id).get(fieldName)!.toString() + "' to equal '" + expectedVal + "'.");
-                toggleTestPassedValue();
+                testPassed = false;
                 return false;
             } else {
                 return true;
             }
         }
-        log.error("UNREACHABLE Could not obtain value to test for equality for entity of type: '" + entityType + "' with id: '" + id + "' and field name: '" + fieldName + "'.");
-        toggleTestPassedValue();
+        log.error("UNREACHABLE Could not obtain value for field: '" + fieldName + "' for entity of type: '" + entityType + "' with id: '" + id + "'.");
+        testPassed = false;
         return false;
     }
 
