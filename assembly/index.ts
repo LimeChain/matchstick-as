@@ -1,19 +1,25 @@
 import { log } from "./log";
-import { testPassed, toggleTestPassedValue } from  "./store";
+import { testPassed, resetTestPassedValue } from  "./store";
 
 export { addMetadata } from "./event";
 
-let map = new Map<i32, string>();
+let hashAndReturnValue = new Map<i32, string>();
+let testNames = new Set<string>();
 
 export function test(name: string, f: () => void): void {
-    f()
-    if (testPassed) {
-        log.success("TEST " + name + " ✅");
-        testUtil.incrementSuccessfulTestsCount();
+    if (testNames.has(name)) {
+        log.critical("Test with name: '" + name + "' already exists.");
     } else {
-        log.error("TEST " + name + " ❌");
-        toggleTestPassedValue();
-        testUtil.incrementFailedTestsCount();
+        testNames.add(name);
+        f()
+        if (testPassed) {
+            log.success("TEST " + name + " ✅");
+            testUtil.incrementSuccessfulTestsCount();
+        } else {
+            log.error("TEST " + name + " ❌");
+            resetTestPassedValue();
+            testUtil.incrementFailedTestsCount();
+        }
     }
 }
 
@@ -31,9 +37,9 @@ export function mockFunction(
 ): void {
     let hash = createHash(contractAddress, fnName, fnArguments);
     if (reverts) {
-        map.set(hash, "");
+        hashAndReturnValue.set(hash, "");
     } else {
-        map.set(hash, expectedReturnValue);
+        hashAndReturnValue.set(hash, expectedReturnValue);
     }
 }
 
@@ -43,8 +49,8 @@ export function callFunction(
     fnArguments: string[],
 ): string {
     let hash = createHash(contractAddress, fnName, fnArguments);
-    if (map.has(hash)) {
-        return map.get(hash);
+    if (hashAndReturnValue.has(hash)) {
+        return hashAndReturnValue.get(hash);
     }
     log.error(
         "No function with name '" +
