@@ -47,13 +47,15 @@ export namespace store {
             storeMap.get(entityType).get(id).get(fieldName) != null
         ) {
             if (storeMap.get(entityType).get(id).get(fieldName)!.toString() != expectedVal) {
-                log.error("MISMATCH Expected '" + storeMap.get(entityType).get(id).get(fieldName)!.toString() + "' to equal '" + expectedVal + "'.")
+                log.error("MISMATCH Expected '" + storeMap.get(entityType).get(id).get(fieldName)!.toString() + "' to equal '" + expectedVal + "'.");
                 toggleTestPassedValue();
                 return false;
             } else {
                 return true;
             }
         }
+        log.error("UNREACHABLE Could not obtain value to test for equality for entity of type: '" + entityType + "' with id: '" + id + "' and field name: '" + fieldName + "'.");
+        toggleTestPassedValue();
         return false;
     }
 
