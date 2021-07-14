@@ -23,7 +23,6 @@ export namespace store {
     }
 
     export function set(entityType: string, id: string, data: Entity): void {
-        log.debug("type: " + entityType + ", id: " + id);
         if (!storeMap.has(entityType)) {
             storeMap.set(entityType, new Map<string, Entity>());
         }
