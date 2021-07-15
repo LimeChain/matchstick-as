@@ -28,19 +28,35 @@ export declare namespace testUtil {
     export function incrementFailedTestsCount(): void;
 }
 
+export class MockedFunction {
+    contractAddress: string;
+    name: string;
+    args: string[];
+
+    constructor(contractAddress: string, fnName: string) {
+        this.contractAddress = contractAddress;
+        this.name = fnName;
+    }
+
+    withArgs(args: string[]): MockedFunction {
+        this.args = args;
+        return this;
+    }
+
+    returns(returnValue: string): void {
+        hashAndReturnValue.set(createHash(this.contractAddress, this.name, this.args), returnValue);
+    }
+
+    reverts(): void {
+        hashAndReturnValue.set(createHash(this.contractAddress, this.name, this.args), "");
+    }
+}
+
 export function mockFunction(
     contractAddress: string,
-    fnName: string,
-    fnArguments: string[],
-    expectedReturnValue: string,
-    reverts: bool,
-): void {
-    let hash = createHash(contractAddress, fnName, fnArguments);
-    if (reverts) {
-        hashAndReturnValue.set(hash, "");
-    } else {
-        hashAndReturnValue.set(hash, expectedReturnValue);
-    }
+    fnName: string
+): MockedFunction {
+    return new MockedFunction(contractAddress, fnName);
 }
 
 export function callFunction(
