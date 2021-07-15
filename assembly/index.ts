@@ -32,8 +32,10 @@ export declare namespace testUtil {
 export class MockedContract {
     address: string;
 
-    bind(address: string): void {
-        this.address = address;
+    static bind(address: string): MockedContract {
+        let contract = new MockedContract();
+        contract.address = address;
+        return contract;
     }
 
     callFunction(fnName: string, fnArgs: string []): string {
