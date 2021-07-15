@@ -3,6 +3,7 @@ import { testPassed, resetTestPassedValue } from  "./store";
 
 export { addMetadata } from "./event";
 
+const CLASS_IN_FINISHED_STATE_ERROR_MESSAGE = "You can't modify a MockedFunction instance after it has been saved.";
 let hashAndReturnValue = new Map<i32, string>();
 let testNames = new Set<string>();
 
@@ -28,7 +29,31 @@ export declare namespace testUtil {
     export function incrementFailedTestsCount(): void;
 }
 
+export class MockedContract {
+    address: string;
+
+    bind(address: string): void {
+        this.address = address;
+    }
+
+    callFunction(fnName: string, fnArgs: string []): string {
+        let hash = createHash(this.address, fnName, fnArgs);
+        if (hashAndReturnValue.has(hash)) {
+            return hashAndReturnValue.get(hash);
+        }
+        log.error(
+            "No function with name '" +
+            fnName +
+            "', contract address '" +
+            this.address +
+            "' and given arguments found."
+        );
+        return "";
+    }
+}
+
 export class MockedFunction {
+    isFinishedState = false;
     contractAddress: string;
     name: string;
     args: string[];
@@ -39,16 +64,30 @@ export class MockedFunction {
     }
 
     withArgs(args: string[]): MockedFunction {
-        this.args = args;
+        if (!this.isFinishedState) {
+            this.args = args;
+        } else {
+            log.critical(CLASS_IN_FINISHED_STATE_ERROR_MESSAGE);
+        }
         return this;
     }
 
     returns(returnValue: string): void {
-        hashAndReturnValue.set(createHash(this.contractAddress, this.name, this.args), returnValue);
+        if (!this.isFinishedState) {
+            hashAndReturnValue.set(createHash(this.contractAddress, this.name, this.args), returnValue);
+            this.isFinishedState = true;
+        } else {
+            log.critical(CLASS_IN_FINISHED_STATE_ERROR_MESSAGE);
+        }
     }
 
     reverts(): void {
-        hashAndReturnValue.set(createHash(this.contractAddress, this.name, this.args), "");
+        if (!this.isFinishedState) {
+            hashAndReturnValue.set(createHash(this.contractAddress, this.name, this.args), "");
+            this.isFinishedState = true;
+        } else {
+            log.critical(CLASS_IN_FINISHED_STATE_ERROR_MESSAGE);
+        }
     }
 }
 
@@ -57,25 +96,6 @@ export function mockFunction(
     fnName: string
 ): MockedFunction {
     return new MockedFunction(contractAddress, fnName);
-}
-
-export function callFunction(
-    contractAddress: string,
-    fnName: string,
-    fnArguments: string[],
-): string {
-    let hash = createHash(contractAddress, fnName, fnArguments);
-    if (hashAndReturnValue.has(hash)) {
-        return hashAndReturnValue.get(hash);
-    }
-    log.error(
-        "No function with name '" +
-        fnName +
-        "', contract address '" +
-        contractAddress +
-        "' and given arguments found.",
-    );
-    return "";
 }
 
 function createHash(
