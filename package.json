@@ -1,6 +1,6 @@
 {
   "name": "subtest-as",
-  "version": "0.0.64",
+  "version": "0.0.65",
   "description": "Helper library for writing subgraph unit tests in Assemblyscript",
   "dependencies": {
     "@graphprotocol/graph-ts": "0.20.0",
