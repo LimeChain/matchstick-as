@@ -1,4 +1,5 @@
 import { log } from "./log";
+import { assertFieldEq } from "./assertFieldEq";
 import { testPassed, resetTestPassedValue } from  "./store";
 
 export { addMetadata } from "./event";
