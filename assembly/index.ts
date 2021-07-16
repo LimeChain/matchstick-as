@@ -14,7 +14,7 @@ export function test(name: string, f: () => void): void {
     }
 
     testNames.add(name);
-    log.info("Running test " + name);
+    log.info("TEST " + name);
     f();
 }
 
