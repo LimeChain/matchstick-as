@@ -1,4 +1,3 @@
-export declare namespace store {
-    // Host export for clearing the store
-    export function clear(): void;
-}
+// Host export for clearing the store
+export declare function clearStore(): void;
+
