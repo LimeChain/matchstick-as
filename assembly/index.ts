@@ -1,7 +1,7 @@
 import { log } from "./log";
-import { assertFieldEq } from "./assertFieldEq";
 import { testPassed, resetTestPassedValue } from  "./store";
 
+export { assertFieldEq } from "./assertFieldEq";
 export { addMetadata } from "./event";
 
 let hashAndReturnValue = new Map<i32, string>();
