@@ -7,6 +7,8 @@ export { addMetadata } from "./event";
 let hashAndReturnValue = new Map<i32, string>();
 let testNames = new Set<string>();
 
+export declare function registerTest(name: string): void;
+
 export function test(name: string, f: () => void): void {
     if(testNames.has(name)){
         log.critical("Test with name: '" + name + "' already exists.");
