@@ -55,7 +55,7 @@ export class MockedContract {
 }
 
 export class MockedFunction {
-    isFinishedState = false;
+    isFinishedState: bool = false;
     contractAddress: string;
     name: string;
     args: string[];
