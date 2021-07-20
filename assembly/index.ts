@@ -1,31 +1,16 @@
 import { log } from "./log";
-import { testPassed, resetTestPassedValue } from  "./store";
 
+export { clearStore } from "./store";
+export { assert } from "./assert";
 export { addMetadata } from "./event";
 
 let hashAndReturnValue = new Map<i32, string>();
-let testNames = new Set<string>();
+
+export declare function registerTest(name: string): void;
 
 export function test(name: string, f: () => void): void {
-    if (testNames.has(name)) {
-        log.critical("Test with name: '" + name + "' already exists.");
-    } else {
-        testNames.add(name);
-        f()
-        if (testPassed) {
-            log.success("TEST " + name + " ✅");
-            testUtil.incrementSuccessfulTestsCount();
-        } else {
-            log.error("TEST " + name + " ❌");
-            resetTestPassedValue();
-            testUtil.incrementFailedTestsCount();
-        }
-    }
-}
-
-export declare namespace testUtil {
-    export function incrementSuccessfulTestsCount(): void;
-    export function incrementFailedTestsCount(): void;
+    registerTest(name);
+    f();
 }
 
 export function mockFunction(
