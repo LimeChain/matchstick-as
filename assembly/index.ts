@@ -1,4 +1,4 @@
-import { Value } from "@graphprotocol/graph-ts";
+import { ethereum } from "@graphprotocol/graph-ts";
 import { log } from "./log";
 
 export { clearStore } from "./store";
@@ -8,7 +8,7 @@ export { addMetadata } from "./event";
 const CLASS_IN_FINISHED_STATE_ERROR_MESSAGE = "You can't modify a MockedFunction instance after it has been saved.";
 
 export declare function registerTest(name: string): void;
-export declare function mockFunction(contractAddress: string, fnName: string, fnArgs: Value[], returnValue: Value, reverts: bool): void;
+export declare function mockFunction(contractAddress: string, fnName: string, fnArgs: ethereum.Value[], returnValue: ethereum.Value, reverts: bool): void;
 
 export function test(name: string, f: () => void): void {
     registerTest(name);
@@ -44,14 +44,14 @@ export class MockedFunction {
     isFinishedState: bool = false;
     contractAddress: string;
     name: string;
-    args: Value[];
+    args: ethereum.Value[];
 
     constructor(contractAddress: string, fnName: string) {
         this.contractAddress = contractAddress;
         this.name = fnName;
     }
 
-    withArgs(args: Value[]): MockedFunction {
+    withArgs(args: ethereum.Value[]): MockedFunction {
         if (!this.isFinishedState) {
             this.args = args;
         } else {
@@ -60,7 +60,7 @@ export class MockedFunction {
         return this;
     }
 
-    returns(returnValue: Value): void {
+    returns(returnValue: ethereum.Value): void {
         if (!this.isFinishedState) {
             mockFunction(this.contractAddress, this.name, this.args, returnValue, false);
             this.isFinishedState = true;
@@ -71,7 +71,7 @@ export class MockedFunction {
 
     reverts(): void {
         if (!this.isFinishedState) {
-            mockFunction(this.contractAddress, this.name, this.args, Value.fromNull(), true);
+            mockFunction(this.contractAddress, this.name, this.args, ethereum.Value.fromString(""), true);
             this.isFinishedState = true;
         } else {
             log.critical(CLASS_IN_FINISHED_STATE_ERROR_MESSAGE);
