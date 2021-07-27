@@ -15,16 +15,6 @@ export function test(name: string, f: () => void): void {
     f();
 }
 
-export class MockedContract {
-    address: string;
-
-    static bind(address: string): MockedContract {
-        let contract = new MockedContract();
-        contract.address = address;
-        return contract;
-    }
-}
-
 export class MockedFunction {
     isFinishedState: bool = false;
     contractAddress: Address;
