@@ -1,72 +1,62 @@
+import { Address, ethereum } from "@graphprotocol/graph-ts";
 import { log } from "./log";
 
 export { clearStore } from "./store";
 export { assert } from "./assert";
 export { addMetadata } from "./event";
 
-let hashAndReturnValue = new Map<i32, string>();
+const CLASS_IN_FINISHED_STATE_ERROR_MESSAGE = "You can't modify a MockedFunction instance after it has been saved.";
 
 export declare function registerTest(name: string): void;
+export declare function mockFunction(contractAddress: Address, fnName: string, fnArgs: ethereum.Value[], returnValue: ethereum.Value): void;
 
 export function test(name: string, f: () => void): void {
     registerTest(name);
     f();
 }
 
-export function mockFunction(
-    contractAddress: string,
-    fnName: string,
-    fnArguments: string[],
-    expectedReturnValue: string,
-    reverts: bool,
-): void {
-    let hash = createHash(contractAddress, fnName, fnArguments);
-    if (reverts) {
-        hashAndReturnValue.set(hash, "");
-    } else {
-        hashAndReturnValue.set(hash, expectedReturnValue);
+export class MockedFunction {
+    isFinishedState: bool = false;
+    contractAddress: Address;
+    name: string;
+    args: ethereum.Value[];
+
+    constructor(contractAddress: Address, fnName: string) {
+        this.contractAddress = contractAddress;
+        this.name = fnName;
+    }
+
+    withArgs(args: ethereum.Value[]): MockedFunction {
+        if (!this.isFinishedState) {
+            this.args = args;
+        } else {
+            log.critical(CLASS_IN_FINISHED_STATE_ERROR_MESSAGE);
+        }
+        return this;
+    }
+
+    returns(returnValue: ethereum.Value): void {
+        if (!this.isFinishedState) {
+            mockFunction(this.contractAddress, this.name, this.args, returnValue);
+            this.isFinishedState = true;
+        } else {
+            log.critical(CLASS_IN_FINISHED_STATE_ERROR_MESSAGE);
+        }
+    }
+
+    reverts(): void {
+        if (!this.isFinishedState) {
+            mockFunction(this.contractAddress, this.name, this.args, ethereum.Value.fromString(""));
+            this.isFinishedState = true;
+        } else {
+            log.critical(CLASS_IN_FINISHED_STATE_ERROR_MESSAGE);
+        }
     }
 }
 
-export function callFunction(
-    contractAddress: string,
-    fnName: string,
-    fnArguments: string[],
-): string {
-    let hash = createHash(contractAddress, fnName, fnArguments);
-    if (hashAndReturnValue.has(hash)) {
-        return hashAndReturnValue.get(hash);
-    }
-    log.error(
-        "No function with name '" +
-        fnName +
-        "', contract address '" +
-        contractAddress +
-        "' and given arguments found.",
-    );
-    return "";
-}
-
-function createHash(
-    address: string,
-    fnName: string,
-    fnArguments: string[],
-): i32 {
-    let stringToHash = address + fnName;
-    for (let i = 0; i < fnArguments.length; i++) {
-        stringToHash.concat(fnArguments[i]);
-    }
-
-    let hash = 0;
-    if (stringToHash.length == 0) {
-        return hash;
-    }
-
-    for (let i = 0; i < stringToHash.length; i++) {
-        let char = stringToHash.charCodeAt(i);
-        hash = (hash << 5) - hash + char;
-        hash = hash & hash;
-    }
-
-    return hash;
+export function createMockedFunction(
+    contractAddress: Address,
+    fnName: string
+): MockedFunction {
+    return new MockedFunction(contractAddress, fnName);
 }
