@@ -8,7 +8,7 @@ export { addMetadata } from "./event";
 const CLASS_IN_FINISHED_STATE_ERROR_MESSAGE = "You can't modify a MockedFunction instance after it has been saved.";
 
 export declare function registerTest(name: string): void;
-export declare function mockFunction(contractAddress: Address, fnName: string, fnArgs: ethereum.Value[], returnValue: ethereum.Value[]): void;
+export declare function mockFunction(contractAddress: Address, fnName: string, fnSignature: string, fnArgs: ethereum.Value[], returnValue: ethereum.Value[]): void;
 
 export function test(name: string, f: () => void): void {
     registerTest(name);
@@ -19,11 +19,13 @@ export class MockedFunction {
     isFinishedState: bool = false;
     contractAddress: Address;
     name: string;
+    signature: string;
     args: ethereum.Value[];
 
-    constructor(contractAddress: Address, fnName: string) {
+    constructor(contractAddress: Address, fnName: string, fnSignature: string) {
         this.contractAddress = contractAddress;
         this.name = fnName;
+        this.signature = fnSignature;
     }
 
     withArgs(args: ethereum.Value[]): MockedFunction {
@@ -37,7 +39,7 @@ export class MockedFunction {
 
     returns(returnValue: ethereum.Value[]): void {
         if (!this.isFinishedState) {
-            mockFunction(this.contractAddress, this.name, this.args, returnValue);
+            mockFunction(this.contractAddress, this.name, this.signature, this.args, returnValue);
             this.isFinishedState = true;
         } else {
             log.critical(CLASS_IN_FINISHED_STATE_ERROR_MESSAGE);
@@ -46,7 +48,7 @@ export class MockedFunction {
 
     reverts(): void {
         if (!this.isFinishedState) {
-            mockFunction(this.contractAddress, this.name, this.args, []);
+            mockFunction(this.contractAddress, this.name, this.signature, this.args, []);
             this.isFinishedState = true;
         } else {
             log.critical(CLASS_IN_FINISHED_STATE_ERROR_MESSAGE);
@@ -56,7 +58,8 @@ export class MockedFunction {
 
 export function createMockedFunction(
     contractAddress: Address,
-    fnName: string
+    fnName: string,
+    fnSignature: string
 ): MockedFunction {
-    return new MockedFunction(contractAddress, fnName);
+    return new MockedFunction(contractAddress, fnName, fnSignature);
 }
