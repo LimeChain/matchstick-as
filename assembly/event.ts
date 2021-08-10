@@ -42,7 +42,6 @@ defaultTransaction.to = Address.fromString(
     "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A",
 );
 defaultTransaction.value = BigInt.fromI32(1);
-defaultTransaction.gasUsed = BigInt.fromI32(1);
 defaultTransaction.gasPrice = BigInt.fromI32(1);
 defaultTransaction.input = Address.fromString(
     "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A",
@@ -53,10 +52,6 @@ let defaultEventParams =
 
 let eventParam = new ethereum.EventParam();
 eventParam.name = "name";
-
-let ethereumValue = new ethereum.Value();
-ethereumValue.kind = ethereum.ValueKind.INT;
-ethereumValue.data = 1;
 
 defaultEventParams.push(eventParam);
 

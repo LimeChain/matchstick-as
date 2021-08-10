@@ -26,6 +26,7 @@ export class MockedFunction {
         this.contractAddress = contractAddress;
         this.name = fnName;
         this.signature = fnSignature;
+        this.args = [];
     }
 
     withArgs(args: ethereum.Value[]): MockedFunction {
