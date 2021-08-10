@@ -1,6 +1,6 @@
 export declare namespace log {
     // Host export for logging, providing basic logging functionality
-    export function log(level: i32, msg: string): void;
+    export function log(level: Level, msg: string): void;
 }
 
 export namespace log {
