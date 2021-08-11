@@ -1,5 +1,5 @@
 import { Address, ethereum } from "@graphprotocol/graph-ts";
-import { log } from "./log";
+import { critical } from "./log";
 
 export { clearStore } from "./store";
 export { assert } from "./assert";
@@ -33,7 +33,7 @@ export class MockedFunction {
         if (!this.isFinishedState) {
             this.args = args;
         } else {
-            log.critical(CLASS_IN_FINISHED_STATE_ERROR_MESSAGE);
+            critical(CLASS_IN_FINISHED_STATE_ERROR_MESSAGE);
         }
         return this;
     }
@@ -43,7 +43,7 @@ export class MockedFunction {
             mockFunction(this.contractAddress, this.name, this.signature, this.args, returnValue, 0);
             this.isFinishedState = true;
         } else {
-            log.critical(CLASS_IN_FINISHED_STATE_ERROR_MESSAGE);
+            critical(CLASS_IN_FINISHED_STATE_ERROR_MESSAGE);
         }
     }
 
@@ -52,7 +52,7 @@ export class MockedFunction {
             mockFunction(this.contractAddress, this.name, this.signature, this.args, [], 1);
             this.isFinishedState = true;
         } else {
-            log.critical(CLASS_IN_FINISHED_STATE_ERROR_MESSAGE);
+            critical(CLASS_IN_FINISHED_STATE_ERROR_MESSAGE);
         }
     }
 }
