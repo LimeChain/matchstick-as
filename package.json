@@ -1,6 +1,6 @@
 {
   "name": "matchstick-as",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Helper library for writing subgraph unit tests in Assemblyscript",
   "dependencies": {
     "@graphprotocol/graph-ts": "git+https://github.com/graphprotocol/graph-ts.git#0371df18f4713ca4c2161b0134e3f278625cf7aa",
