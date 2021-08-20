@@ -24,8 +24,9 @@ export function test(name: string, f: () => void): void {
 }
 
 export function newMockEvent(event: ethereum.Event): ethereum.Event {
-  event.parameters.splice(0, event.parameters.length);
-  return addMetadata(event);
+  let eventWithMetadata = addMetadata(event);
+  eventWithMetadata.parameters.splice(0, event.parameters.length);
+  return eventWithMetadata;
 }
 
 export class MockedFunction {
