@@ -76,7 +76,6 @@ export function addMetadata(event: ethereum.Event): ethereum.Event {
     event.logType = defaultEventData.logType;
     event.block = defaultEventData.block;
     event.transaction = defaultEventData.transaction;
-    event.parameters = defaultEventData.parameters;
 
     return event;
 }
