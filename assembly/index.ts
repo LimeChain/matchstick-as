@@ -2,7 +2,7 @@ import { Address, ethereum } from "@graphprotocol/graph-ts";
 import { log } from "./log";
 import { addMetadata } from "./event";
 
-export { clearStore } from "./store";
+export { clearStore, logStore } from "./store";
 export { assert } from "./assert";
 
 const CLASS_IN_FINISHED_STATE_ERROR_MESSAGE =
