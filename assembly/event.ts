@@ -47,14 +47,6 @@ defaultTransaction.input = Address.fromString(
     "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A",
 ) as Bytes;
 
-let defaultEventParams =
-    new Array<ethereum.EventParam>();
-
-let eventParam = new ethereum.EventParam();
-eventParam.name = "name";
-
-defaultEventParams.push(eventParam);
-
 let defaultEventData: ethereum.Event = new ethereum.Event();
 defaultEventData.address = Address.fromString(
     "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A",
@@ -63,7 +55,6 @@ defaultEventData.logIndex = BigInt.fromI32(1);
 defaultEventData.logType = "default_log_type";
 defaultEventData.block = defaultBlock;
 defaultEventData.transaction = defaultTransaction;
-defaultEventData.parameters = defaultEventParams;
 
 export function addMetadata(event: ethereum.Event): ethereum.Event {
     event.address = defaultEventData.address;
@@ -71,7 +62,6 @@ export function addMetadata(event: ethereum.Event): ethereum.Event {
     event.logType = defaultEventData.logType;
     event.block = defaultEventData.block;
     event.transaction = defaultEventData.transaction;
-    event.parameters = defaultEventData.parameters;
 
     return event;
 }

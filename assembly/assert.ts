@@ -5,4 +5,6 @@ export declare namespace assert {
     export function fieldEquals(entityType: string, id: string, fieldName: string, expectedVal: string): void;
 
     export function equals(expected: ethereum.Value, actual: ethereum.Value): void;
+
+    export function notInStore(entityType: string, id: string): void;
 }
