@@ -1,9 +1,10 @@
 import { Address, ethereum } from "@graphprotocol/graph-ts";
 import { log } from "./log";
-import { addMetadata } from "./event";
 
 export { clearStore, logStore } from "./store";
+export { newMockEvent } from "./event";
 export { assert } from "./assert";
+export { log } from "./log";
 
 const CLASS_IN_FINISHED_STATE_ERROR_MESSAGE =
   "You can't modify a MockedFunction instance after it has been saved.";
@@ -21,12 +22,6 @@ export declare function mockFunction(
 export function test(name: string, f: () => void): void {
   registerTest(name);
   f();
-}
-
-export function newMockEvent(event: ethereum.Event): ethereum.Event {
-  let eventWithMetadata = addMetadata(event);
-  eventWithMetadata.parameters.splice(0, event.parameters.length);
-  return eventWithMetadata;
 }
 
 export class MockedFunction {
