@@ -1,10 +1,10 @@
 import { Address, ethereum } from "@graphprotocol/graph-ts";
-import { log } from "./log";
+import { critical } from "./log";
 
 export { clearStore, logStore } from "./store";
 export { newMockEvent } from "./event";
 export { assert } from "./assert";
-export { log } from "./log";
+export { critical, success, error, info, debug, warning } from "./log";
 
 const CLASS_IN_FINISHED_STATE_ERROR_MESSAGE =
   "You can't modify a MockedFunction instance after it has been saved.";
@@ -29,7 +29,7 @@ export class MockedFunction {
   contractAddress: Address;
   name: string;
   signature: string;
-  args: ethereum.Value[];
+  args: ethereum.Value[] = [];
 
   constructor(contractAddress: Address, fnName: string, fnSignature: string) {
     this.contractAddress = contractAddress;
@@ -41,7 +41,7 @@ export class MockedFunction {
     if (!this.isFinishedState) {
       this.args = args;
     } else {
-      log.critical(CLASS_IN_FINISHED_STATE_ERROR_MESSAGE);
+      critical(CLASS_IN_FINISHED_STATE_ERROR_MESSAGE);
     }
     return this;
   }
@@ -58,7 +58,7 @@ export class MockedFunction {
       );
       this.isFinishedState = true;
     } else {
-      log.critical(CLASS_IN_FINISHED_STATE_ERROR_MESSAGE);
+      critical(CLASS_IN_FINISHED_STATE_ERROR_MESSAGE);
     }
   }
 
@@ -74,7 +74,7 @@ export class MockedFunction {
       );
       this.isFinishedState = true;
     } else {
-      log.critical(CLASS_IN_FINISHED_STATE_ERROR_MESSAGE);
+      critical(CLASS_IN_FINISHED_STATE_ERROR_MESSAGE);
     }
   }
 }
