@@ -1,68 +1,66 @@
 import { Address, BigInt, Bytes, ethereum } from "@graphprotocol/graph-ts";
 
-let defaultBlock = new ethereum.Block();
-defaultBlock.hash = Address.fromString(
+let defaultBlockHash = Address.fromString(
     "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A",
 ) as Bytes;
-defaultBlock.parentHash = Address.fromString(
+let defaultBlockParentHash = Address.fromString(
     "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A",
 ) as Bytes;
-defaultBlock.unclesHash = Address.fromString(
+let defaultBlockUnclesHash = Address.fromString(
     "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A",
 ) as Bytes;
-defaultBlock.author = Address.fromString(
+let defaultBlockAuthor = Address.fromString(
     "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A",
 );
-defaultBlock.stateRoot = Address.fromString(
+let defaultBlockStateRoot = Address.fromString(
     "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A",
 ) as Bytes;
-defaultBlock.transactionsRoot = Address.fromString(
+let defaultBlockTransactionsRoot = Address.fromString(
     "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A",
 ) as Bytes;
-defaultBlock.receiptsRoot = Address.fromString(
+let defaultBlockReceiptsRoot = Address.fromString(
     "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A",
 ) as Bytes;
-defaultBlock.number = BigInt.fromI32(1);
-defaultBlock.gasUsed = BigInt.fromI32(1);
-defaultBlock.gasLimit = BigInt.fromI32(1);
-defaultBlock.timestamp = BigInt.fromI32(1);
-defaultBlock.difficulty = BigInt.fromI32(1);
-defaultBlock.totalDifficulty = BigInt.fromI32(1);
-defaultBlock.size = BigInt.fromI32(1);
+let defaultBlockNumber = BigInt.fromI32(1);
+let defaultBlockGasUsed = BigInt.fromI32(1);
+let defaultBlockGasLimit = BigInt.fromI32(1);
+let defaultBlockTimestamp = BigInt.fromI32(1);
+let defaultBlockDifficulty = BigInt.fromI32(1);
+let defaultBlockTotalDifficulty = BigInt.fromI32(1);
+let defaultBlockSize = BigInt.fromI32(1);
+let defaultBlock = new ethereum.Block(defaultBlockHash, defaultBlockParentHash, defaultBlockUnclesHash, defaultBlockAuthor,
+    defaultBlockStateRoot, defaultBlockTransactionsRoot, defaultBlockReceiptsRoot, defaultBlockNumber, defaultBlockGasUsed,
+    defaultBlockGasLimit, defaultBlockTimestamp, defaultBlockDifficulty, defaultBlockTotalDifficulty, defaultBlockSize);
 
-let defaultTransaction = new ethereum.Transaction();
-defaultTransaction.hash = Address.fromString(
+let defaultTransactionHash = Address.fromString(
     "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A",
 ) as Bytes;
-defaultTransaction.index = BigInt.fromI32(1);
-defaultTransaction.from = Address.fromString(
+let defaultTransactionIndex = BigInt.fromI32(1);
+let defaultTransactionFrom = Address.fromString(
     "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A",
 );
-defaultTransaction.to = Address.fromString(
+let defaultTransactionTo = Address.fromString(
     "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A",
 );
-defaultTransaction.value = BigInt.fromI32(1);
-defaultTransaction.gasUsed = BigInt.fromI32(1);
-defaultTransaction.gasPrice = BigInt.fromI32(1);
-defaultTransaction.input = Address.fromString(
+let defaultTransactionValue = BigInt.fromI32(1);
+let defaultTransactionGasLimit = BigInt.fromI32(1);
+let defaultTransactionGasPrice = BigInt.fromI32(1);
+let defaultTransactionInput = Address.fromString(
     "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A",
 ) as Bytes;
+let defaultTransaction = new ethereum.Transaction(defaultTransactionHash, defaultTransactionIndex, defaultTransactionFrom,
+    defaultTransactionTo, defaultTransactionValue, defaultTransactionGasLimit, defaultTransactionGasPrice, defaultTransactionInput);
 
-let defaultEventData: ethereum.Event = new ethereum.Event();
-defaultEventData.address = Address.fromString(
+let defaultEventDataAddress = Address.fromString(
     "0xA16081F360e3847006dB660bae1c6d1b2e17eC2A",
 );
-defaultEventData.logIndex = BigInt.fromI32(1);
-defaultEventData.logType = "default_log_type";
-defaultEventData.block = defaultBlock;
-defaultEventData.transaction = defaultTransaction;
+let defaultEventDataLogIndex = BigInt.fromI32(1);
+let defaultEventDataLogType = "default_log_type";
+let defaultEventDataBlock = defaultBlock;
+let defaultEventDataTransaction = defaultTransaction;
+let defaultEvent: ethereum.Event = new ethereum.Event(defaultEventDataAddress, defaultEventDataLogIndex,
+    defaultEventDataLogIndex, defaultEventDataLogType, defaultEventDataBlock, defaultEventDataTransaction, []);
 
-export function addMetadata(event: ethereum.Event): ethereum.Event {
-    event.address = defaultEventData.address;
-    event.logIndex = defaultEventData.logIndex;
-    event.logType = defaultEventData.logType;
-    event.block = defaultEventData.block;
-    event.transaction = defaultEventData.transaction;
-
-    return event;
+export function newMockEvent(): ethereum.Event {
+    return defaultEvent;
 }
