@@ -19,7 +19,7 @@ export declare function mockFunction(
   reverts: u32
 ): void;
 
-export function test(name: string, shouldFail: bool = false, f: () => void): void {
+export function test(name: string, f: () => void, shouldFail: bool = false): void {
   if (registerTest(name, shouldFail)) {
     f();
   }
