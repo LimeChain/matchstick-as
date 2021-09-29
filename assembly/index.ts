@@ -16,7 +16,7 @@ export declare function mockFunction(
   fnSignature: string,
   fnArgs: ethereum.Value[],
   returnValue: ethereum.Value[],
-  reverts: u32
+  reverts: bool
 ): void;
 
 export function test(name: string, f: () => void, shouldFail: bool = false): void {
@@ -55,7 +55,7 @@ export class MockedFunction {
         this.signature,
         this.args,
         returnValue,
-        0
+        false
       );
       this.isFinishedState = true;
     } else {
@@ -71,7 +71,7 @@ export class MockedFunction {
         this.signature,
         this.args,
         [],
-        1
+        true
       );
       this.isFinishedState = true;
     } else {
