@@ -9,19 +9,20 @@ export { critical, success, error, info, debug, warning } from "./log";
 const CLASS_IN_FINISHED_STATE_ERROR_MESSAGE =
   "You can't modify a MockedFunction instance after it has been saved.";
 
-export declare function registerTest(name: string): void;
+export declare function registerTest(name: string, shouldFail: bool): bool;
 export declare function mockFunction(
   contractAddress: Address,
   fnName: string,
   fnSignature: string,
   fnArgs: ethereum.Value[],
   returnValue: ethereum.Value[],
-  reverts: u32
+  reverts: bool
 ): void;
 
-export function test(name: string, f: () => void): void {
-  registerTest(name);
-  f();
+export function test(name: string, f: () => void, shouldFail: bool = false): void {
+  if (registerTest(name, shouldFail)) {
+    f();
+  }
 }
 
 export class MockedFunction {
@@ -54,7 +55,7 @@ export class MockedFunction {
         this.signature,
         this.args,
         returnValue,
-        0
+        false
       );
       this.isFinishedState = true;
     } else {
@@ -70,7 +71,7 @@ export class MockedFunction {
         this.signature,
         this.args,
         [],
-        1
+        true
       );
       this.isFinishedState = true;
     } else {
