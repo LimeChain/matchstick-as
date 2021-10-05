@@ -1,4 +1,4 @@
-import { Address, BigInt, Bytes, ethereum, store, Value } from "@graphprotocol/graph-ts";
+import { Address, BigInt, Bytes, ethereum } from "@graphprotocol/graph-ts";
 
 export declare namespace assert {
     // Host export for asserting equality on fields in the store
@@ -20,6 +20,10 @@ export namespace assert {
     
     export function i32Equals(number1: i32, number2: i32): void {
         assert.equals(ethereum.Value.fromI32(number1), ethereum.Value.fromI32(number2));
+    }
+
+    export function bigIntEquals(bigInt1: BigInt, bigInt2: BigInt): void {
+        assert.equals(ethereum.Value.fromSignedBigInt(bigInt1), ethereum.Value.fromSignedBigInt(bigInt2));
     }
 
     export function booleanEquals(bool1: boolean, bool2: boolean): void {
