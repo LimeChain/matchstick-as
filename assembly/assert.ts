@@ -13,4 +13,28 @@ export namespace assert {
     export function addressEquals(address1: Address, address2: Address): void {
         assert.equals(ethereum.Value.fromAddress(address1), ethereum.Value.fromAddress(address2));
     }
+
+    export function bytesEquals(bytes1: Bytes, bytes2: Bytes): void {
+        assert.equals(ethereum.Value.fromBytes(bytes1), ethereum.Value.fromBytes(bytes2));
+    }
+    
+    export function i32Equals(number1: i32, number2: i32): void {
+        assert.equals(ethereum.Value.fromI32(number1), ethereum.Value.fromI32(number2));
+    }
+
+    export function booleanEquals(bool1: boolean, bool2: boolean): void {
+        assert.equals(ethereum.Value.fromBoolean(bool1), ethereum.Value.fromBoolean(bool2));
+    }
+
+    export function stringEquals(string1: string, string2: string): void {
+        assert.equals(ethereum.Value.fromString(string1), ethereum.Value.fromString(string2));
+    }
+
+    export function arrayEquals(array1: Array<ethereum.Value>, array2: Array<ethereum.Value>): void {
+        assert.equals(ethereum.Value.fromArray(array1), ethereum.Value.fromArray(array2));
+    }
+
+    export function tupleEquals(tuple1: ethereum.Tuple, tuple2: ethereum.Tuple): void {
+        assert.equals(ethereum.Value.fromTuple(tuple1), ethereum.Value.fromTuple(tuple2));
+    }
 }
