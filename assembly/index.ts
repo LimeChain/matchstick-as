@@ -42,7 +42,7 @@ export class MockedFunction {
     if (!this.isFinishedState) {
       this.args = args;
     } else {
-      log.critical(CLASS_IN_FINISHED_STATE_ERROR_MESSAGE);
+      log.critical(CLASS_IN_FINISHED_STATE_ERROR_MESSAGE, []);
     }
     return this;
   }
@@ -59,7 +59,7 @@ export class MockedFunction {
       );
       this.isFinishedState = true;
     } else {
-      log.critical(CLASS_IN_FINISHED_STATE_ERROR_MESSAGE);
+      log.critical(CLASS_IN_FINISHED_STATE_ERROR_MESSAGE, []);
     }
   }
 
@@ -75,7 +75,7 @@ export class MockedFunction {
       );
       this.isFinishedState = true;
     } else {
-      log.critical(CLASS_IN_FINISHED_STATE_ERROR_MESSAGE);
+      log.critical(CLASS_IN_FINISHED_STATE_ERROR_MESSAGE, []);
     }
   }
 }

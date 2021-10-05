@@ -12,28 +12,49 @@ export namespace log {
         DEBUG = 4,
         SUCCESS = 5
     }
-    
-    export function critical(msg: string): void {
-        log.log(Level.CRITICAL, msg);
+
+    export function critical(msg: string, args: Array<string>): void {
+        log.log(Level.CRITICAL, format(msg, args));
     }
-    
-    export function error(msg: string): void {
-        log.log(Level.ERROR, msg);
+
+    export function error(msg: string, args: Array<string>): void {
+        log.log(Level.ERROR, format(msg, args));
     }
-    
-    export function warning(msg: string): void {
-        log.log(Level.WARNING, msg);
+
+    export function warning(msg: string, args: Array<string>): void {
+        log.log(Level.WARNING, format(msg, args));
     }
-    
-    export function info(msg: string): void {
-        log.log(Level.INFO, msg);
+
+    export function info(msg: string, args: Array<string>): void {
+        log.log(Level.INFO, format(msg, args));
     }
-    
-    export function debug(msg: string): void {
-        log.log(Level.DEBUG, msg);
+
+    export function debug(msg: string, args: Array<string>): void {
+        log.log(Level.DEBUG, format(msg, args));
     }
-    
-    export function success(msg: string): void {
-        log.log(Level.SUCCESS, msg);
+
+    export function success(msg: string, args: Array<string>): void {
+        log.log(Level.SUCCESS, format(msg, args));
     }
 }
+
+function format(fmt: string, args: string[]): string {
+    let out = '';
+    let argIndex = 0;
+    for (let i: i32 = 0, len: i32 = fmt.length; i < len; i++) {
+        if (i < len - 1 &&
+            fmt.charCodeAt(i) == 0x7b /* '{' */ &&
+            fmt.charCodeAt(i + 1) == 0x7d /* '}' */
+        ) {
+            if (argIndex >= args.length) {
+                throw new Error('Too few arguments for format string: ' + fmt);
+            } else {
+                out += args[argIndex++];
+                i++;
+            }
+        } else {
+            out += fmt[i];
+        }
+    }
+    return out;
+  }
