@@ -38,7 +38,7 @@ export namespace assert {
         assert.equals(ethereum.Value.fromTuple(tuple1), ethereum.Value.fromTuple(tuple2));
     }
 
-    export function assertTrue(value: boolean) {
+    export function assertTrue(value: boolean): void {
         booleanEquals(true, value);
     }
 }
