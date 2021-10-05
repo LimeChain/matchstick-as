@@ -45,4 +45,12 @@ export namespace assert {
     export function assertTrue(value: boolean): void {
         booleanEquals(true, value);
     }
+
+    export function assertNull<T>(value: T): void {
+        assertTrue(value == null);
+    }
+
+    export function assertNotNull<T>(value: T): void {
+        assertTrue(value != null);
+    }
 }
