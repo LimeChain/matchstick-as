@@ -1,6 +1,6 @@
 {
   "name": "matchstick-as",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "author": "LimeChain",
   "license": "MIT",
   "description": "Helper library for writing subgraph unit tests in AssemblyScript",
