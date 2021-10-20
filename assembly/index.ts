@@ -2,7 +2,7 @@ import { Address, ethereum } from "@graphprotocol/graph-ts";
 import { log } from "./log";
 
 export { clearStore, logStore } from "./store";
-export { newMockEvent } from "./event";
+export { newMockEvent, newMockCall } from "./defaults";
 export { assert } from "./assert";
 export { log } from "./log";
 
