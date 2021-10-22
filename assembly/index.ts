@@ -15,7 +15,6 @@ export function test(name: string, f: () => void, shouldFail: bool = false): voi
   _registerTest(name, shouldFail, f.index as u32);
 }
 
-
 export declare function mockFunction(
   contractAddress: Address,
   fnName: string,
