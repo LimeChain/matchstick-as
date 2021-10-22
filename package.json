@@ -1,14 +1,14 @@
 {
   "name": "matchstick-as",
-  "version": "0.1.5",
-  "description": "Helper library for writing subgraph unit tests in Assemblyscript",
+  "version": "0.2.0",
+  "author": "LimeChain",
+  "license": "MIT",
+  "description": "Helper library for writing subgraph unit tests in AssemblyScript",
   "dependencies": {
     "@graphprotocol/graph-ts": "0.22.0",
     "assemblyscript": "^0.19.16"
   },
   "types": "assembly/index.ts",
   "ascMain": "assembly/index.ts",
-  "scripts": {},
-  "author": "LimeChain",
-  "license": "MIT"
+  "scripts": {}
 }
