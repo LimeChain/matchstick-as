@@ -10,15 +10,11 @@ let defaultTransaction = new ethereum.Transaction(defaultAddressBytes, defaultBi
     defaultAddress, defaultBigInt, defaultBigInt, defaultBigInt, defaultAddressBytes);
 let defaultEventDataLogType = "default_log_type";
 
-let defaultEvent: ethereum.Event = new ethereum.Event(defaultAddress, defaultBigInt,
-    defaultBigInt, defaultEventDataLogType, defaultBlock, defaultTransaction, []);
-
-let defaultCall: ethereum.Call = new ethereum.Call(defaultAddress, defaultAddress, defaultBlock, defaultTransaction, [], []);
-
 export function newMockEvent(): ethereum.Event {
-    return defaultEvent;
+    return new ethereum.Event(defaultAddress, defaultBigInt,
+        defaultBigInt, defaultEventDataLogType, defaultBlock, defaultTransaction, []);
 }
 
 export function newMockCall(): ethereum.Call {
-    return defaultCall;
+    return new ethereum.Call(defaultAddress, defaultAddress, defaultBlock, defaultTransaction, [], []);
 }
