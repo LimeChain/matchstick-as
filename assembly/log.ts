@@ -42,7 +42,8 @@ function format(fmt: string, args: string[]): string {
   let out = '';
   let argIndex = 0;
   for (let i: i32 = 0, len: i32 = fmt.length; i < len; i++) {
-    if (i < len - 1 && fmt.charCodeAt(i) == 0x7b /* '{' */ && fmt.charCodeAt(i + 1) == 0x7d /* '}' */) {
+    // 0x7b = '{' 0x7d = '}'
+    if (i < len - 1 && fmt.charCodeAt(i) == 0x7b && fmt.charCodeAt(i + 1) == 0x7d) {
       if (argIndex >= args.length) {
         throw new Error('Too few arguments for format string: ' + fmt);
       } else {
