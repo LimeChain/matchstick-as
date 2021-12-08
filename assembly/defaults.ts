@@ -7,7 +7,7 @@ let defaultBlock = new ethereum.Block(defaultAddressBytes, defaultAddressBytes, 
     defaultAddressBytes, defaultAddressBytes, defaultAddressBytes, defaultBigInt, defaultBigInt,
     defaultBigInt, defaultBigInt, defaultBigInt, defaultBigInt, defaultBigInt, defaultBigInt);
 let defaultTransaction = new ethereum.Transaction(defaultAddressBytes, defaultBigInt, defaultAddress,
-    defaultAddress, defaultBigInt, defaultBigInt, defaultBigInt, defaultAddressBytes, defaultAddressBytes);
+    defaultAddress, defaultBigInt, defaultBigInt, defaultBigInt, defaultAddressBytes, defaultBigInt);
 let defaultEventDataLogType = "default_log_type";
 
 export function newMockEvent(): ethereum.Event {
