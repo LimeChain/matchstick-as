@@ -14,6 +14,12 @@ export function test(name: string, f: () => void, shouldFail: bool = false): voi
   _registerTest(name, shouldFail, f.index as u32);
 }
 
+declare function _registerDescribe(name: string, funcIdx: u32): void;
+export function describe(name: string, f: () => void): void {
+  _registerDescribe(name, f.index as u32);
+  f();
+}
+
 declare function _registerHook(funcIdx: u32, type: string): void;
 
 export function beforeAll(f: () => void): void {
