@@ -70,7 +70,7 @@ export namespace assert {
     assertTrue(value != null);
   }
 
-  export function assertEntityCount(entityType: string, expectedCount: i32): void {
-    i32Equals(countEntities(entityType), expectedCount);
+  export function entityCount(entityType: string, expectedCount: i32): void {
+    i32Equals(expectedCount, countEntities(entityType));
   }
 }
