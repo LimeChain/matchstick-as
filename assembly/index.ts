@@ -1,7 +1,7 @@
 import { Address, ethereum } from "@graphprotocol/graph-ts";
 import { log } from "./log";
 
-export { clearStore, logStore } from "./store";
+export { clearStore, logStore, countEntities } from "./store";
 export { dataSourceMock } from "./data_source_mock";
 export { newMockEvent, newMockCall } from "./defaults";
 export { assert } from "./assert";
