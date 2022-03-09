@@ -1,5 +1,5 @@
 import { Address, BigInt, Bytes, ethereum } from "@graphprotocol/graph-ts";
-
+import { countEntities } from "./store";
 // Host exports for assertion.
 declare namespace _assert {
   function fieldEquals(entityType: string, id: string, fieldName: string, expectedVal: string): bool;
@@ -68,5 +68,9 @@ export namespace assert {
 
   export function assertNotNull<T>(value: T): void {
     assertTrue(value != null);
+  }
+
+  export function entityCount(entityType: string, expectedCount: i32): void {
+    i32Equals(expectedCount, countEntities(entityType));
   }
 }
