@@ -18,7 +18,6 @@ export function test(name: string, f: () => void, shouldFail: bool = false): voi
 declare function _registerDescribe(name: string, funcIdx: u32): void;
 export function describe(name: string, f: () => void): void {
   _registerDescribe(name, f.index as u32);
-  f();
 }
 
 declare function _registerHook(funcIdx: u32, type: string): void;
