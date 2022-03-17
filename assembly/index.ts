@@ -38,6 +38,8 @@ export function afterEach(f: () => void): void {
   _registerHook(f.index as u32, "afterEach");
 }
 
+export declare function mockIpfsFile(hash: string, file_path: string): void;
+
 export declare function mockFunction(
   contractAddress: Address,
   fnName: string,
