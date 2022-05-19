@@ -31,6 +31,7 @@ function newTransactionReceipt(): ethereum.TransactionReceipt {
 }
 
 function newLog(): ethereum.Log {
-  return new ethereum.Log(defaultAddress, [defaultAddressBytes], defaultAddressBytes, defaultAddressBytes,
-  defaultBigInt as Bytes, defaultAddressBytes, defaultBigInt, defaultBigInt, defaultBigInt, defaultEventDataLogType);
+  return new ethereum.Log(defaultAddress, [defaultAddressBytes], defaultAddressBytes,
+  defaultAddressBytes, defaultBigInt as Bytes, defaultAddressBytes, defaultBigInt,
+  defaultBigInt, defaultBigInt, defaultEventDataLogType, Wrapped<false>);
 }
