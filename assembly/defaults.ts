@@ -7,7 +7,7 @@ let defaultEventDataLogType = "default_log_type";
 
 export function newMockEvent(): ethereum.Event {
     return new ethereum.Event(defaultAddress, defaultBigInt,
-        defaultBigInt, defaultEventDataLogType, newBlock(), newTransaction(), []);
+        defaultBigInt, defaultEventDataLogType, newBlock(), newTransaction(), [], newTransactionReceipt());
 }
 
 export function newMockCall(): ethereum.Call {
