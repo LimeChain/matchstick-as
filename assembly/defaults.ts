@@ -1,4 +1,4 @@
-import { Address, BigInt, Bytes, Wrapped, ethereum } from "@graphprotocol/graph-ts";
+import { Address, BigInt, Bytes, ByteArray, Wrapped, ethereum } from "@graphprotocol/graph-ts";
 
 let defaultAddress = Address.fromString("0xA16081F360e3847006dB660bae1c6d1b2e17eC2A");
 let defaultAddressBytes = defaultAddress as Bytes;
@@ -32,6 +32,6 @@ function newTransactionReceipt(): ethereum.TransactionReceipt {
 
 function newLog(): ethereum.Log {
   return new ethereum.Log(defaultAddress, [defaultAddressBytes], defaultAddressBytes,
-  defaultAddressBytes, defaultAddressBytes, defaultAddressBytes, defaultBigInt,
+  defaultAddressBytes, ByteArray.fromI32(1), defaultAddressBytes, defaultBigInt,
   defaultBigInt, defaultBigInt, defaultEventDataLogType, new Wrapped(false));
 }
