@@ -26,7 +26,7 @@ function newTransaction(): ethereum.Transaction {
 }
 
 function newTransactionReceipt(): ethereum.TransactionReceipt {
-  return new ethereum.TransactionReceipt(defaultAddressBytes, defaultBigInt, defaultAddressBytes, defaultBigInt
+  return new ethereum.TransactionReceipt(defaultAddressBytes, defaultBigInt, defaultAddressBytes, defaultBigInt,
   defaultBigInt, defaultBigInt, defaultAddress, [newLog()], defaultBigInt, defaultAddressBytes, defaultAddressBytes)
 }
 
