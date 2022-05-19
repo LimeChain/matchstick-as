@@ -1,8 +1,9 @@
-import { Address, BigInt, Bytes, ethereum } from "@graphprotocol/graph-ts";
+import { Address, BigInt, Bytes, Wrapped, ethereum } from "@graphprotocol/graph-ts";
 
 let defaultAddress = Address.fromString("0xA16081F360e3847006dB660bae1c6d1b2e17eC2A");
-let defaultAddressBytes = Address.fromString("0xA16081F360e3847006dB660bae1c6d1b2e17eC2A") as Bytes;
+let defaultAddressBytes = defaultAddress as Bytes;
 let defaultBigInt = BigInt.fromI32(1);
+let defaultBigIntBytes = 1 as Bytes;
 let defaultEventDataLogType = "default_log_type";
 
 export function newMockEvent(): ethereum.Event {
@@ -32,6 +33,6 @@ function newTransactionReceipt(): ethereum.TransactionReceipt {
 
 function newLog(): ethereum.Log {
   return new ethereum.Log(defaultAddress, [defaultAddressBytes], defaultAddressBytes,
-  defaultAddressBytes, defaultBigInt as Bytes, defaultAddressBytes, defaultBigInt,
-  defaultBigInt, defaultBigInt, defaultEventDataLogType, false);
+  defaultAddressBytes, defaultBigIntBytes, defaultAddressBytes, defaultBigInt,
+  defaultBigInt, defaultBigInt, defaultEventDataLogType, new Wrapped(false));
 }
