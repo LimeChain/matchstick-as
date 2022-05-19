@@ -24,3 +24,13 @@ function newTransaction(): ethereum.Transaction {
     return new ethereum.Transaction(defaultAddressBytes, defaultBigInt, defaultAddress,
     defaultAddress, defaultBigInt, defaultBigInt, defaultBigInt, defaultAddressBytes, defaultBigInt);
 }
+
+function newTransactionReceipt(): ethereum.TransactionReceipt {
+  return new ethereum.TransactionReceipt(defaultAddressBytes, defaultBigInt, defaultAddressBytes, defaultBigInt
+  defaultBigInt, defaultBigInt, defaultAddress, [newLog()], defaultBigInt, defaultAddressBytes, defaultAddressBytes)
+}
+
+function newLog(): ethereum.Log {
+  return new ethereum.Log(defaultAddress, [defaultAddressBytes], defaultAddressBytes, defaultAddressBytes,
+  defaultBigInt as Bytes, defaultAddressBytes, defaultBigInt, defaultBigInt, defaultBigInt, defaultEventDataLogType);
+}

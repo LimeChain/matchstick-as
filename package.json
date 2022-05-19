@@ -5,7 +5,7 @@
   "license": "MIT",
   "description": "Helper library for writing subgraph unit tests in AssemblyScript",
   "dependencies": {
-    "@graphprotocol/graph-ts": "^0.26.0",
+    "@graphprotocol/graph-ts": "^0.27.0",
     "assemblyscript": "^0.19.20",
     "wabt": "1.0.24"
   },
