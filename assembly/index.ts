@@ -10,10 +10,32 @@ export { log } from "./log";
 const CLASS_IN_FINISHED_STATE_ERROR_MESSAGE =
   "You can't modify a MockedFunction instance after it has been saved.";
 
-
 declare function _registerTest(name: string, shouldFail: bool, funcIdx: u32): void;
 export function test(name: string, f: () => void, shouldFail: bool = false): void {
   _registerTest(name, shouldFail, f.index as u32);
+}
+
+declare function _registerDescribe(name: string, funcIdx: u32): void;
+export function describe(name: string, f: () => void): void {
+  _registerDescribe(name, f.index as u32);
+}
+
+declare function _registerHook(funcIdx: u32, type: string): void;
+
+export function beforeAll(f: () => void): void {
+  _registerHook(f.index as u32, "beforeAll");
+}
+
+export function afterAll(f: () => void): void {
+  _registerHook(f.index as u32, "afterAll");
+}
+
+export function beforeEach(f: () => void): void {
+  _registerHook(f.index as u32, "beforeEach");
+}
+
+export function afterEach(f: () => void): void {
+  _registerHook(f.index as u32, "afterEach");
 }
 
 export declare function mockIpfsFile(hash: string, file_path: string): void;
