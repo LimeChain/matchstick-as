@@ -6,6 +6,24 @@ let defaultBigInt = BigInt.fromI32(1);
 let defaultIntBytes = Bytes.fromI32(1);
 let defaultEventDataLogType = "default_log_type";
 
+export function newEvent<EventType>(values: Array<ethereum.Value>): EventType {
+    let params = values.map<ethereum.EventParam>(
+        (value) => new ethereum.EventParam("parameter", value)
+    );
+
+    let event = new ethereum.Event(
+        defaultAddress,
+        defaultBigInt,
+        defaultBigInt,
+        defaultEventDataLogType,
+        newBlock(),
+        newTransaction(),
+        params,
+        newTransactionReceipt()
+    );
+    return changetype<EventType>(event);
+}
+
 export function newMockEvent(): ethereum.Event {
     return new ethereum.Event(defaultAddress, defaultBigInt,
         defaultBigInt, defaultEventDataLogType, newBlock(), newTransaction(), [], newTransactionReceipt());
