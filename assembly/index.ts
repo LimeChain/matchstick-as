@@ -3,7 +3,7 @@ import { log } from "./log";
 
 export { clearStore, logStore, countEntities } from "./store";
 export { dataSourceMock } from "./data_source_mock";
-export { newMockEvent, newMockCall } from "./defaults";
+export { newMockEvent, newMockEventWithParams, newTypedMockEvent, newTypedMockEventWithParams, newMockCall, newMockCallWithIO } from "./defaults";
 export { assert } from "./assert";
 export { log } from "./log";
 
