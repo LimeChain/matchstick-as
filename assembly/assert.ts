@@ -3,7 +3,7 @@ import { countEntities } from "./store";
 // Host exports for assertion.
 declare namespace _assert {
   function fieldEquals(entityType: string, id: string, fieldName: string, expectedVal: string): bool;
-  function equals(expected: ethereum.Value, actual: ethereum.Valueg): bool;
+  function equals(expected: ethereum.Value, actual: ethereum.Value): bool;
   function notInStore(entityType: string, id: string): bool;
   function fieldEqualsWithMessage(entityType: string, id: string, fieldName: string, expectedVal: string, message: string): bool;
   function equalsWithMessage(expected: ethereum.Value, actual: ethereum.Value, message: string): bool;
