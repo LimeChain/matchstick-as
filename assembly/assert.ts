@@ -21,7 +21,7 @@ export namespace assert {
     };
 
     if (!success) {
-      throw new Error("Assertion Error");
+      throw new Error("assert.fieldEquals Assertion Error");
     }
   }
 
@@ -35,7 +35,7 @@ export namespace assert {
     };
 
     if (!success) {
-      throw new Error("Assertion Error");
+      throw new Error("assert.equals Assertion Error");
     };
   }
 
@@ -49,7 +49,7 @@ export namespace assert {
     };
 
     if (!success) {
-      throw new Error("Assertion Error");
+      throw new Error("assert.notInStore Assertion Error");
     };
   }
 
@@ -63,7 +63,7 @@ export namespace assert {
     };
 
     if (!success) {
-      throw new Error("Assertion Error");
+      throw new Error("assert.addressEquals Assertion Error");
     };
   }
 
@@ -77,7 +77,7 @@ export namespace assert {
     };
 
     if (!success) {
-      throw new Error("Assertion Error");
+      throw new Error("assert.bytesEquals Assertion Error");
     };
   }
 
@@ -91,7 +91,7 @@ export namespace assert {
     };
 
     if (!success) {
-      throw new Error("Assertion Error");
+      throw new Error("assert.i32Equals Assertion Error");
     };
   }
 
@@ -105,7 +105,7 @@ export namespace assert {
     };
 
     if (!success) {
-      throw new Error("Assertion Error");
+      throw new Error("assert.bigIntEquals Assertion Error");
     };
   }
 
@@ -119,7 +119,7 @@ export namespace assert {
     };
 
     if (!success) {
-      throw new Error("booleanEquals Assertion Error");
+      throw new Error("assert.booleanEquals Assertion Error");
     };
   }
 
@@ -133,7 +133,7 @@ export namespace assert {
     };
 
     if (!success) {
-      throw new Error("stringEquals Assertion Error");
+      throw new Error("assert.stringEquals Assertion Error");
     };
   }
 
@@ -147,7 +147,7 @@ export namespace assert {
     };
 
     if (!success) {
-      throw new Error("arrayEquals Assertion Error");
+      throw new Error("assert.arrayEquals Assertion Error");
     };
   }
 
@@ -161,7 +161,7 @@ export namespace assert {
     };
 
     if (!success) {
-      throw new Error("tupleEquals Assertion Error");
+      throw new Error("assert.tupleEquals Assertion Error");
     };
   }
 
@@ -175,7 +175,7 @@ export namespace assert {
     };
 
     if (!success) {
-      throw new Error("assertTrue Assertion Error");
+      throw new Error("assert.assertTrue Assertion Error");
     };
   }
 
@@ -189,7 +189,7 @@ export namespace assert {
     };
 
     if (!success) {
-      throw new Error("assertNull Assertion Error");
+      throw new Error("assert.assertNull Assertion Error");
     };
   }
 
@@ -203,7 +203,7 @@ export namespace assert {
     };
 
     if (!success) {
-      throw new Error("assertNotNull Assertion Error");
+      throw new Error("assert.assertNotNull Assertion Error");
     };
   }
 
@@ -217,7 +217,7 @@ export namespace assert {
     };
 
     if (!success) {
-      throw new Error("entityCount Assertion Error");
+      throw new Error("assert.entityCount Assertion Error");
     };
   }
 }
