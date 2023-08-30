@@ -8,7 +8,7 @@
     "wabt": "1.0.24"
   },
   "devDependencies": {
-    "@graphprotocol/graph-ts": "^0.29.3",
+    "@graphprotocol/graph-ts": "^0.30.0",
     "assemblyscript": "^0.19.20"
   },
   "types": "assembly/index.ts",
