@@ -1,3 +1,5 @@
+import { Entity } from "@graphprotocol/graph-ts";
+
 // Host export for clearing the store.
 export declare function clearStore(): void;
 
@@ -5,3 +7,7 @@ export declare function clearStore(): void;
 export declare function logStore(): void;
 
 export declare function countEntities(entityType: string): i32;
+
+export declare function clearInBlockStore(): void;
+
+export declare function mockInBlockStore(entity: string, id: string, data: Entity): void;
