@@ -26,36 +26,36 @@ export namespace assert {
     }
   }
 
-  export function addressEquals(address1: Address, address2: Address): void {
-    assert.equals(ethereum.Value.fromAddress(address1), ethereum.Value.fromAddress(address2));
+  export function addressEquals(expected: Address, actual: Address): void {
+    assert.equals(ethereum.Value.fromAddress(expected), ethereum.Value.fromAddress(actual));
   }
 
-  export function bytesEquals(bytes1: Bytes, bytes2: Bytes): void {
-    assert.equals(ethereum.Value.fromBytes(bytes1), ethereum.Value.fromBytes(bytes2));
+  export function bytesEquals(expected: Bytes, actual: Bytes): void {
+    assert.equals(ethereum.Value.fromBytes(expected), ethereum.Value.fromBytes(actual));
   }
   
-  export function i32Equals(number1: i32, number2: i32): void {
-    assert.equals(ethereum.Value.fromI32(number1), ethereum.Value.fromI32(number2));
+  export function i32Equals(expected: i32, actual: i32): void {
+    assert.equals(ethereum.Value.fromI32(expected), ethereum.Value.fromI32(actual));
   }
 
-  export function bigIntEquals(bigInt1: BigInt, bigInt2: BigInt): void {
-    assert.equals(ethereum.Value.fromSignedBigInt(bigInt1), ethereum.Value.fromSignedBigInt(bigInt2));
+  export function bigIntEquals(expected: BigInt, actual: BigInt): void {
+    assert.equals(ethereum.Value.fromSignedBigInt(expected), ethereum.Value.fromSignedBigInt(actual));
   }
 
-  export function booleanEquals(bool1: boolean, bool2: boolean): void {
-    assert.equals(ethereum.Value.fromBoolean(bool1), ethereum.Value.fromBoolean(bool2));
+  export function booleanEquals(expected: boolean, actual: boolean): void {
+    assert.equals(ethereum.Value.fromBoolean(expected), ethereum.Value.fromBoolean(actual));
   }
 
-  export function stringEquals(string1: string, string2: string): void {
-    assert.equals(ethereum.Value.fromString(string1), ethereum.Value.fromString(string2));
+  export function stringEquals(expected: string, actual: string): void {
+    assert.equals(ethereum.Value.fromString(expected), ethereum.Value.fromString(actual));
   }
 
-  export function arrayEquals(array1: Array<ethereum.Value>, array2: Array<ethereum.Value>): void {
-    assert.equals(ethereum.Value.fromArray(array1), ethereum.Value.fromArray(array2));
+  export function arrayEquals(expected: Array<ethereum.Value>, actual: Array<ethereum.Value>): void {
+    assert.equals(ethereum.Value.fromArray(expected), ethereum.Value.fromArray(actual));
   }
 
-  export function tupleEquals(tuple1: ethereum.Tuple, tuple2: ethereum.Tuple): void {
-    assert.equals(ethereum.Value.fromTuple(tuple1), ethereum.Value.fromTuple(tuple2));
+  export function tupleEquals(expected: ethereum.Tuple, actual: ethereum.Tuple): void {
+    assert.equals(ethereum.Value.fromTuple(expected), ethereum.Value.fromTuple(actual));
   }
 
   export function assertTrue(value: boolean): void {
