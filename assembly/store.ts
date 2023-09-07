@@ -11,3 +11,5 @@ export declare function countEntities(entityType: string): i32;
 export declare function clearInBlockStore(): void;
 
 export declare function mockInBlockStore(entity: string, id: string, data: Entity): void;
+
+export declare function logDataSources(template: string): void;
