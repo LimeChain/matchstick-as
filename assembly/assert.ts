@@ -5,9 +5,23 @@ declare namespace _assert {
   function fieldEquals(entityType: string, id: string, fieldName: string, expectedVal: string): bool;
   function equals(expected: ethereum.Value, actual: ethereum.Value): bool;
   function notInStore(entityType: string, id: string): bool;
+  function dataSourceCount(template: string, expectedCount: i32 ): bool;
+  function dataSourceExists(template: string, address: String): bool;
 }
 
 export namespace assert {
+  export function dataSourceCount(template: string, expectedCount: i32): void {
+    if (!_assert.dataSourceCount(template, expectedCount)) {
+      throw new Error("Assertion Error");
+    }
+  }
+
+  export function dataSourceExists(template: string, address: string): void {
+    if (!_assert.dataSourceExists(template, address)) {
+      throw new Error("Assertion Error");
+    }
+  }
+
   export function fieldEquals(entityType: string, id: string, fieldName: string, expectedVal: string): void {
     if (!_assert.fieldEquals(entityType, id, fieldName, expectedVal)) {
       throw new Error("Assertion Error");
