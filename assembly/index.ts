@@ -1,9 +1,9 @@
 import { Address, ethereum } from "@graphprotocol/graph-ts";
 import { log } from "./log";
 
-export { clearStore, logStore, countEntities, clearInBlockStore, mockInBlockStore, logEntity } from "./store";
+export * from "./store";
 export { dataSourceMock } from "./data_source_mock";
-export { newMockEvent, newMockEventWithParams, newTypedMockEvent, newTypedMockEventWithParams, newMockCall, newMockCallWithIO } from "./defaults";
+export * from "./defaults";
 export { assert } from "./assert";
 export { log } from "./log";
 
