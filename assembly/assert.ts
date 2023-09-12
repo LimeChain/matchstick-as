@@ -17,21 +17,7 @@ declare namespace _assert {
   function dataSourceExistsWithMessage(template: string, address: String, message: string): bool;
 }
 
-export namespace assert {
-  export function fieldEquals(entityType: string, id: string, fieldName: string, expectedVal: string, message: string | null = null): void {
-    let success: bool;
-
-    if (!message) {
-      success = _assert.fieldEquals(entityType, id, fieldName, expectedVal);
-    } else {
-      success = _assert.fieldEqualsWithMessage(entityType, id, fieldName, expectedVal, message);
-    };
-
-    if (!success) {
-      throw new Error("assert.fieldEquals Assertion Error");
-    };
-  }
-  
+export namespace assert {  
   export function dataSourceCount(template: string, expectedCount: i32, message: string | null = null): void {
     let success: bool = message ? _assert.dataSourceCountWithMessage(template, expectedCount, message) : _assert.dataSourceCount(template, expectedCount);
     
@@ -50,10 +36,18 @@ export namespace assert {
     }
   }
 
-  export function fieldEquals(entityType: string, id: string, fieldName: string, expectedVal: string): void {
-    if (!_assert.fieldEquals(entityType, id, fieldName, expectedVal)) {
-      throw new Error("Assertion Error");
-    }
+  export function fieldEquals(entityType: string, id: string, fieldName: string, expectedVal: string, message: string | null = null): void {
+    let success: bool;
+
+    if (!message) {
+      success = _assert.fieldEquals(entityType, id, fieldName, expectedVal);
+    } else {
+      success = _assert.fieldEqualsWithMessage(entityType, id, fieldName, expectedVal, message);
+    };
+
+    if (!success) {
+      throw new Error("assert.fieldEquals Assertion Error");
+    };
   }
 
   export function equals(expected: ethereum.Value, actual: ethereum.Value, message: string | null = null): void {
