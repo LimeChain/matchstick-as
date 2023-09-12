@@ -6,9 +6,9 @@ declare namespace _assert {
   function fieldEquals(entityType: string, id: string, fieldName: string, expectedVal: string): bool;
   function equals(expected: ethereum.Value, actual: ethereum.Value): bool;
   function notInStore(entityType: string, id: string): bool;
-  function dataSourceCount(template: string, expectedCount: i32 ): bool;
+  function dataSourceCount(template: string, expectedCount: i32): bool;
   function dataSourceExists(template: string, address: String): bool;
-  
+
   // Host exports for assertion with custom message.
   function fieldEqualsWithMessage(entityType: string, id: string, fieldName: string, expectedVal: string, message: string): bool;
   function equalsWithMessage(expected: ethereum.Value, actual: ethereum.Value, message: string): bool;
@@ -17,33 +17,29 @@ declare namespace _assert {
   function dataSourceExistsWithMessage(template: string, address: String, message: string): bool;
 }
 
-export namespace assert {  
+export namespace assert {
   export function dataSourceCount(template: string, expectedCount: i32, message: string | null = null): void {
     let success: bool = message ? _assert.dataSourceCountWithMessage(template, expectedCount, message) : _assert.dataSourceCount(template, expectedCount);
-    
+
     if (!success) {
       throw new Error("Assertion Error");
     }
   }
 
   export function dataSourceExists(template: string, address: string, message: string | null = null): void {
-    let success: bool = message 
-      ? _assert.dataSourceExistsWithMessage(template, address, message) 
+    let success: bool = message
+      ? _assert.dataSourceExistsWithMessage(template, address, message)
       : _assert.dataSourceExists(template, address);
-    
+
     if (!success) {
       throw new Error("Assertion Error");
     }
   }
 
   export function fieldEquals(entityType: string, id: string, fieldName: string, expectedVal: string, message: string | null = null): void {
-    let success: bool;
-
-    if (!message) {
-      success = _assert.fieldEquals(entityType, id, fieldName, expectedVal);
-    } else {
-      success = _assert.fieldEqualsWithMessage(entityType, id, fieldName, expectedVal, message);
-    };
+    let success: bool = message
+      ? _assert.fieldEqualsWithMessage(entityType, id, fieldName, expectedVal, message)
+      : _assert.fieldEquals(entityType, id, fieldName, expectedVal);
 
     if (!success) {
       throw new Error("assert.fieldEquals Assertion Error");
@@ -51,13 +47,9 @@ export namespace assert {
   }
 
   export function equals(expected: ethereum.Value, actual: ethereum.Value, message: string | null = null): void {
-    let success: bool;
-
-    if (!message) {
-      success = _assert.equals(expected, actual);
-    } else {
-      success = _assert.equalsWithMessage(expected, actual, message);
-    };
+    let success: bool = message
+      ? _assert.equalsWithMessage(expected, actual, message)
+      : _assert.equals(expected, actual);
 
     if (!success) {
       throw new Error("assert.equals Assertion Error");
@@ -65,13 +57,9 @@ export namespace assert {
   }
 
   export function notInStore(entityType: string, id: string, message: string | null = null): void {
-    let success: bool;
-
-    if (!message) {
-      success = _assert.notInStore(entityType, id);
-    } else {
-      success = _assert.notInStoreWithMessage(entityType, id, message);
-    };
+    let success: bool = message
+      ? _assert.notInStoreWithMessage(entityType, id, message)
+      : _assert.notInStore(entityType, id);
 
     if (!success) {
       throw new Error("assert.notInStore Assertion Error");
@@ -79,13 +67,9 @@ export namespace assert {
   }
 
   export function addressEquals(address1: Address, address2: Address, message: string | null = null): void {
-    let success: bool;
-
-    if (!message) {
-      success = _assert.equals(ethereum.Value.fromAddress(address1), ethereum.Value.fromAddress(address2));
-    } else {
-      success = _assert.equalsWithMessage(ethereum.Value.fromAddress(address1), ethereum.Value.fromAddress(address2), message);
-    };
+    let success: bool = message
+      ? _assert.equalsWithMessage(ethereum.Value.fromAddress(address1), ethereum.Value.fromAddress(address2), message)
+      : _assert.equals(ethereum.Value.fromAddress(address1), ethereum.Value.fromAddress(address2));
 
     if (!success) {
       throw new Error("assert.addressEquals Assertion Error");
@@ -93,13 +77,9 @@ export namespace assert {
   }
 
   export function bytesEquals(bytes1: Bytes, bytes2: Bytes, message: string | null = null): void {
-    let success: bool;
-
-    if (!message) {
-      success = _assert.equals(ethereum.Value.fromBytes(bytes1), ethereum.Value.fromBytes(bytes2));
-    } else {
-      success = _assert.equalsWithMessage(ethereum.Value.fromBytes(bytes1), ethereum.Value.fromBytes(bytes2), message);
-    };
+    let success: bool = message
+      ? _assert.equalsWithMessage(ethereum.Value.fromBytes(bytes1), ethereum.Value.fromBytes(bytes2), message)
+      : _assert.equals(ethereum.Value.fromBytes(bytes1), ethereum.Value.fromBytes(bytes2));
 
     if (!success) {
       throw new Error("assert.bytesEquals Assertion Error");
@@ -107,13 +87,9 @@ export namespace assert {
   }
 
   export function i32Equals(number1: i32, number2: i32, message: string | null = null): void {
-    let success: bool;
-
-    if (!message) {
-      success = _assert.equals(ethereum.Value.fromI32(number1), ethereum.Value.fromI32(number2));
-    } else {
-      success = _assert.equalsWithMessage(ethereum.Value.fromI32(number1), ethereum.Value.fromI32(number2), message);
-    };
+    let success: bool = message
+      ? _assert.equalsWithMessage(ethereum.Value.fromI32(number1), ethereum.Value.fromI32(number2), message)
+      : _assert.equals(ethereum.Value.fromI32(number1), ethereum.Value.fromI32(number2));
 
     if (!success) {
       throw new Error("assert.i32Equals Assertion Error");
@@ -121,13 +97,9 @@ export namespace assert {
   }
 
   export function bigIntEquals(bigInt1: BigInt, bigInt2: BigInt, message: string | null = null): void {
-    let success: bool;
-
-    if (!message) {
-      success = _assert.equals(ethereum.Value.fromSignedBigInt(bigInt1), ethereum.Value.fromSignedBigInt(bigInt2));
-    } else {
-      success = _assert.equalsWithMessage(ethereum.Value.fromSignedBigInt(bigInt1), ethereum.Value.fromSignedBigInt(bigInt2), message);
-    };
+    let success: bool = message
+      ? _assert.equalsWithMessage(ethereum.Value.fromSignedBigInt(bigInt1), ethereum.Value.fromSignedBigInt(bigInt2), message)
+      : _assert.equals(ethereum.Value.fromSignedBigInt(bigInt1), ethereum.Value.fromSignedBigInt(bigInt2));
 
     if (!success) {
       throw new Error("assert.bigIntEquals Assertion Error");
@@ -135,13 +107,9 @@ export namespace assert {
   }
 
   export function booleanEquals(bool1: boolean, bool2: boolean, message: string | null = null): void {
-    let success: bool;
-
-    if (!message) {
-      success = _assert.equals(ethereum.Value.fromBoolean(bool1), ethereum.Value.fromBoolean(bool2));
-    } else {
-      success = _assert.equalsWithMessage(ethereum.Value.fromBoolean(bool1), ethereum.Value.fromBoolean(bool2), message);
-    };
+    let success: bool = message
+      ? _assert.equalsWithMessage(ethereum.Value.fromBoolean(bool1), ethereum.Value.fromBoolean(bool2), message)
+      : _assert.equals(ethereum.Value.fromBoolean(bool1), ethereum.Value.fromBoolean(bool2));
 
     if (!success) {
       throw new Error("assert.booleanEquals Assertion Error");
@@ -149,13 +117,9 @@ export namespace assert {
   }
 
   export function stringEquals(string1: string, string2: string, message: string | null = null): void {
-    let success: bool;
-
-    if (!message) {
-      success = _assert.equals(ethereum.Value.fromString(string1), ethereum.Value.fromString(string2));
-    } else {
-      success = _assert.equalsWithMessage(ethereum.Value.fromString(string1), ethereum.Value.fromString(string2), message);
-    };
+    let success: bool = message
+      ? _assert.equalsWithMessage(ethereum.Value.fromString(string1), ethereum.Value.fromString(string2), message)
+      : _assert.equals(ethereum.Value.fromString(string1), ethereum.Value.fromString(string2));
 
     if (!success) {
       throw new Error("assert.stringEquals Assertion Error");
@@ -163,13 +127,9 @@ export namespace assert {
   }
 
   export function arrayEquals(array1: Array<ethereum.Value>, array2: Array<ethereum.Value>, message: string | null = null): void {
-    let success: bool;
-
-    if (!message) {
-      success = _assert.equals(ethereum.Value.fromArray(array1), ethereum.Value.fromArray(array2));
-    } else {
-      success = _assert.equalsWithMessage(ethereum.Value.fromArray(array1), ethereum.Value.fromArray(array2), message);
-    };
+    let success: bool = message
+      ? _assert.equalsWithMessage(ethereum.Value.fromArray(array1), ethereum.Value.fromArray(array2), message)
+      : _assert.equals(ethereum.Value.fromArray(array1), ethereum.Value.fromArray(array2));
 
     if (!success) {
       throw new Error("assert.arrayEquals Assertion Error");
@@ -177,13 +137,9 @@ export namespace assert {
   }
 
   export function tupleEquals(tuple1: ethereum.Tuple, tuple2: ethereum.Tuple, message: string | null = null): void {
-    let success: bool;
-
-    if (!message) {
-      success = _assert.equals(ethereum.Value.fromTuple(tuple1), ethereum.Value.fromTuple(tuple2));
-    } else {
-      success = _assert.equalsWithMessage(ethereum.Value.fromTuple(tuple1), ethereum.Value.fromTuple(tuple2), message);
-    };
+    let success: bool = message
+      ? _assert.equalsWithMessage(ethereum.Value.fromTuple(tuple1), ethereum.Value.fromTuple(tuple2), message)
+      : _assert.equals(ethereum.Value.fromTuple(tuple1), ethereum.Value.fromTuple(tuple2));
 
     if (!success) {
       throw new Error("assert.tupleEquals Assertion Error");
@@ -191,13 +147,10 @@ export namespace assert {
   }
 
   export function assertTrue(value: boolean, message: string | null = null): void {
-    let success: bool;
+    let success: bool = message
+      ? _assert.equalsWithMessage(ethereum.Value.fromBoolean(true), ethereum.Value.fromBoolean(value), message)
+      : _assert.equals(ethereum.Value.fromBoolean(true), ethereum.Value.fromBoolean(value));
 
-    if (!message) {
-      success = _assert.equals(ethereum.Value.fromBoolean(true), ethereum.Value.fromBoolean(value));
-    } else {
-      success = _assert.equalsWithMessage(ethereum.Value.fromBoolean(true), ethereum.Value.fromBoolean(value), message);
-    };
 
     if (!success) {
       throw new Error("assert.assertTrue Assertion Error");
@@ -205,13 +158,9 @@ export namespace assert {
   }
 
   export function assertNull<T>(value: T, message: string | null = null): void {
-    let success: bool;
-
-    if (!message) {
-      success = _assert.equals(ethereum.Value.fromBoolean(true), ethereum.Value.fromBoolean(value == null));
-    } else {
-      success = _assert.equalsWithMessage(ethereum.Value.fromBoolean(true), ethereum.Value.fromBoolean(value == null), message);
-    };
+    let success: bool = message
+      ? _assert.equalsWithMessage(ethereum.Value.fromBoolean(true), ethereum.Value.fromBoolean(value == null), message)
+      : _assert.equals(ethereum.Value.fromBoolean(true), ethereum.Value.fromBoolean(value == null));
 
     if (!success) {
       throw new Error("assert.assertNull Assertion Error");
@@ -219,13 +168,9 @@ export namespace assert {
   }
 
   export function assertNotNull<T>(value: T, message: string | null = null): void {
-    let success: bool;
-
-    if (!message) {
-      success = _assert.equals(ethereum.Value.fromBoolean(true), ethereum.Value.fromBoolean(value != null));
-    } else {
-      success = _assert.equalsWithMessage(ethereum.Value.fromBoolean(true), ethereum.Value.fromBoolean(value != null), message);
-    };
+    let success: bool = message
+      ? _assert.equalsWithMessage(ethereum.Value.fromBoolean(true), ethereum.Value.fromBoolean(value != null), message)
+      : _assert.equals(ethereum.Value.fromBoolean(true), ethereum.Value.fromBoolean(value != null));
 
     if (!success) {
       throw new Error("assert.assertNotNull Assertion Error");
@@ -233,13 +178,9 @@ export namespace assert {
   }
 
   export function entityCount(entityType: string, expectedCount: i32, message: string | null = null): void {
-    let success: bool;
-
-    if (!message) {
-      success = _assert.equals(ethereum.Value.fromI32(expectedCount), ethereum.Value.fromI32(countEntities(entityType)));
-    } else {
-      success = _assert.equalsWithMessage(ethereum.Value.fromI32(expectedCount), ethereum.Value.fromI32(countEntities(entityType)), message);
-    };
+    let success: bool = message
+      ? _assert.equalsWithMessage(ethereum.Value.fromI32(expectedCount), ethereum.Value.fromI32(countEntities(entityType)), message)
+      : _assert.equals(ethereum.Value.fromI32(expectedCount), ethereum.Value.fromI32(countEntities(entityType)));
 
     if (!success) {
       throw new Error("assert.entityCount Assertion Error");
