@@ -30,9 +30,8 @@ export namespace assert {
     if (!success) {
       throw new Error("assert.fieldEquals Assertion Error");
     };
-}
-
-export namespace assert {
+  }
+  
   export function dataSourceCount(template: string, expectedCount: i32, message: string | null = null): void {
     let success: bool = message ? _assert.dataSourceCountWithMessage(template, expectedCount, message) : _assert.dataSourceCount(template, expectedCount);
     
