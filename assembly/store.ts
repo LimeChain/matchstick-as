@@ -15,5 +15,3 @@ export declare function clearInBlockStore(): void;
 export declare function mockInBlockStore(entity: string, id: string, data: Entity): void;
 
 export declare function logDataSources(template: string): void;
-
-export declare function readFile(path: string): Bytes;

@@ -1,4 +1,4 @@
-import { Address, ethereum } from "@graphprotocol/graph-ts";
+import { Address, Bytes, ethereum } from "@graphprotocol/graph-ts";
 import { log } from "./log";
 
 export * from "./store";
@@ -39,6 +39,8 @@ export function afterEach(f: () => void): void {
 }
 
 export declare function mockIpfsFile(hash: string, file_path: string): void;
+
+export declare function readFile(path: string): Bytes;
 
 export declare function mockFunction(
   contractAddress: Address,
