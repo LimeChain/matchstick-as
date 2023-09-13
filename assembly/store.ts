@@ -1,4 +1,4 @@
-import { Bytes, Entity } from "@graphprotocol/graph-ts";
+import { Entity } from "@graphprotocol/graph-ts";
 
 // Host export for clearing the store.
 export declare function clearStore(): void;
