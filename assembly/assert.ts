@@ -7,14 +7,14 @@ declare namespace _assert {
   function equals(expected: ethereum.Value, actual: ethereum.Value): bool;
   function notInStore(entityType: string, id: string): bool;
   function dataSourceCount(template: string, expectedCount: i32): bool;
-  function dataSourceExists(template: string, address: String): bool;
+  function dataSourceExists(template: string, address: string): bool;
 
   // Host exports for assertion with custom message.
   function fieldEqualsWithMessage(entityType: string, id: string, fieldName: string, expectedVal: string, message: string): bool;
   function equalsWithMessage(expected: ethereum.Value, actual: ethereum.Value, message: string): bool;
   function notInStoreWithMessage(entityType: string, id: string, message: string): bool;
   function dataSourceCountWithMessage(template: string, expectedCount: i32, message: string): bool;
-  function dataSourceExistsWithMessage(template: string, address: String, message: string): bool;
+  function dataSourceExistsWithMessage(template: string, address: string, message: string): bool;
 }
 
 export namespace assert {
